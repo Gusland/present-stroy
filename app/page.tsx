@@ -1,4 +1,5 @@
 import HeroSlider from "@/components/sections/HeroSlider";
+import VillageHighlight from "@/components/sections/VillageHighlight";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import ServicesPreview from "@/components/sections/ServicesPreview";
 import Process from "@/components/sections/Process";
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <HeroSlider />
+      <VillageHighlight />
       <FeaturedProjects />
       <ServicesPreview />
       <Process />

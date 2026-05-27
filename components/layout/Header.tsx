@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { contacts } from "@/data/contacts";
 
 const navItems = [
@@ -53,6 +54,9 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [tickerVisible, setTickerVisible] = useState(false);
+  const pathname = usePathname();
+  const isVillagePage = pathname.startsWith("/volzhsky-bereg");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -60,11 +64,19 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (isVillagePage) { setTickerVisible(false); return; }
+    try {
+      const until = localStorage.getItem("vbDismissUntil");
+      setTickerVisible(!(until && Date.now() < Number(until)));
+    } catch { setTickerVisible(true); }
+  }, [isVillagePage, pathname]);
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"
-      }`}
+      className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
+        tickerVisible ? "top-9" : "top-0"
+      } ${scrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 py-3">
