@@ -43,6 +43,8 @@ export default function Image() {
         {/* Title */}
         <div
           style={{
+            display: "flex",
+            flexDirection: "column",
             fontSize: 72,
             fontWeight: 800,
             color: "white",
@@ -50,8 +52,7 @@ export default function Image() {
             marginBottom: 20,
           }}
         >
-          Волжский
-          <br />
+          <span>Волжский</span>
           <span style={{ color: "#C19A52" }}>Берег</span>
         </div>
 
