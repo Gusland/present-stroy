@@ -1,0 +1,79 @@
+Главная страница. Должен быть слайдер. структура и содержание должно быть идентично https://present-stroy.ru/
+В слайдере 4 слайдас базовой инфой как в оригинале и ссылкой на проекты
+1)тайтл -  Из мечты в реальностьh
+фото -  ttps://present-stroy.ru/netcat_files/1/592/finlyandiya.webp?1727183081
+ссылка - /dom-finlyandia
+2) тайтл -  Жизнь в гармонии с природой
+фото - https://present-stroy.ru/netcat_files/1/592/garmoniya_1_.webp?1727183082
+    ссылка - /dom-garmoniya
+3) тайтл -  Новый уровень загородной жизни 
+фото - https://present-stroy.ru/netcat_files/1/592/kaliforniya.webp?1727183081
+сслфыка - /dom-kaliforniya
+4) тайтл -   Дом, в котором хочется жить
+фото -  https://present-stroy.ru/netcat_files/1/592/etud.webp?1727183081 
+    ссылка - /dom-etud
+список всех проектов
+https://present-stroy.ru/proekty/dom-garmoniya.html
+https://present-stroy.ru/proekty/dom-norvezhskiy.html
+https://present-stroy.ru/proekty/dom-kaliforniya.html
+https://present-stroy.ru/proekty/dom-flagman.html
+ДОМ "ФЛОРИДА" - https://present-stroy.ru/proekty/dom-05-21-ar.html
+https://present-stroy.ru/proekty/dom-tiramisu.html
+https://present-stroy.ru/proekty/dom-miami.html
+https://present-stroy.ru/proekty/dom-skandinavia.html
+https://present-stroy.ru/proekty/dom-etud.html
+https://present-stroy.ru/proekty/dom-ambassador.html
+https://present-stroy.ru/proekty/dom-maestro.html
+https://present-stroy.ru/proekty/dom-adagio.html
+https://present-stroy.ru/proekty/dom-wales.html
+https://present-stroy.ru/proekty/dom-libretto.html
+https://present-stroy.ru/proekty/dom-simfoniya.html
+https://present-stroy.ru/proekty/dom-irlandia.html
+https://present-stroy.ru/proekty/dom-finlyandia.html
+
+
+Список услуг и соответствие нашим страницам.  Нужно также полное соответсвие структуры и содержания. также названия ссылок мне нравятся больше на сайты present-stroy
+http://localhost:3001/services/fundament - https://present-stroy.ru/uslugi/stroitelstvo-fundamenta/
+http://localhost:3001/services/fasad - https://present-stroy.ru/uslugi/fasadnye-raboty/
+http://localhost:3001/services/krovlya - https://present-stroy.ru/uslugi/krovelnye-raboty/
+http://localhost:3001/services/santehnika - https://present-stroy.ru/uslugi/santehnicheskie-raboty/
+http://localhost:3001/services/elektrika - https://present-stroy.ru/uslugi/elektromontazhnye-raboty/
+http://localhost:3001/services/shtukaturka - https://present-stroy.ru/uslugi/mehanizirovannaya-shtukaturka-sten/
+http://localhost:3001/services/remont - https://present-stroy.ru/uslugi/remont-i-otdelka-kvartir-i-ofisov/
+http://localhost:3001/services/gazosilikat - https://present-stroy.ru/uslugi/stroitelstvo-iz-gazosilikatnogo-bloka/
+http://localhost:3001/services/kirpich - https://present-stroy.ru/uslugi/stroitelstvo-chastnyh-domov-i-kottedzhey-iz-kirpicha/
+
+Раздел о компании
+http://localhost:3001/news - https://present-stroy.ru/about/aktsii/
+http://localhost:3001/about/ipoteka - https://present-stroy.ru/about/ipoteka-i-kreditovanie/
+http://localhost:3001/about/karta-obektov - https://present-stroy.ru/about/karta-obektov/
+Обрати внимание, что для каждого объекта есть отдельная страница. нужно так же добавить к нам соответсвующие страницы и карты для каждого объекта
+ Вот их полный Список
+ https://present-stroy.ru/about/karta-obektov/dom-simfoniya.html
+ https://present-stroy.ru/about/karta-obektov/dom-flagman.html
+ https://present-stroy.ru/about/karta-obektov/dom-mayami.html
+ https://present-stroy.ru/about/karta-obektov/dom-garmoniya.html
+ https://present-stroy.ru/about/karta-obektov/dom-norvezhskiy.html
+ https://present-stroy.ru/about/karta-obektov/dom-uels.html
+ https://present-stroy.ru/about/karta-obektov/dom-skandinaviya-1.html
+ https://present-stroy.ru/about/karta-obektov/dom-norvezhskiy-1.html
+ https://present-stroy.ru/about/karta-obektov/dom-etyud.html
+ https://present-stroy.ru/about/karta-obektov/dom-irlandiya.html
+ https://present-stroy.ru/about/karta-obektov/dom-garmoniya-3.html
+ https://present-stroy.ru/about/karta-obektov/dom-garmoniya-4.html
+ https://present-stroy.ru/about/karta-obektov/dom-finlyandiya.html
+ https://present-stroy.ru/about/karta-obektov/dom-garmoniya-5.html
+ https://present-stroy.ru/about/karta-obektov/dom-irlandiya-1.html
+ https://present-stroy.ru/about/karta-obektov/dom-garmoniya-2.html
+https://present-stroy.ru/about/karta-obektov/dom-tiramisu-1.html
+https://present-stroy.ru/about/karta-obektov/dom-simfoniya-1.html
+https://present-stroy.ru/about/karta-obektov/dom-garmoniya-1.html
+https://present-stroy.ru/about/karta-obektov/dom-adazhio.html
+https://present-stroy.ru/about/karta-obektov/dom-ambassador.html
+https://present-stroy.ru/about/karta-obektov/dom-skandinaviya.html
+https://present-stroy.ru/about/karta-obektov/dom-florida.html
+https://present-stroy.ru/about/karta-obektov/dom-kaliforniya.html
+
+
+
+В папку public добавил видео. bg2.mp4 нужно поставить как видео бекграунд в хиро секцию на страницу http://localhost:3001/volzhsky-bereg

@@ -9,6 +9,7 @@ import { buildObjects } from "@/data/objects";
 export const metadata: Metadata = {
   title: "Карта объектов",
   description: "Карта реализованных объектов строительной компании Презент-Строй в Твери и Тверской области.",
+  alternates: { canonical: "/about/karta-obektov" },
 };
 
 export default function KartaObektovPage() {

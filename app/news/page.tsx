@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Новости и акции",
   description:
     "Актуальные новости и акции строительной компании Презент-Строй в Твери.",
+  alternates: { canonical: "/news" },
 };
 
 export default function NewsPage() {

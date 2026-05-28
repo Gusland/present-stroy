@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEO-пакет · present-stroy.рф</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f5efe4;
+    --paper-warm:#ede4d3;
+    --ink:#161310;
+    --ink-soft:#3d3833;
+    --ink-faint:#7a716a;
+    --clay:#b88560;
+    --clay-deep:#8c5a3a;
+    --moss:#5b6a4b;
+    --rule:#d4c9b3;
+    --code:#1f1c18;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:1080px;margin:0 auto;padding:56px 32px 100px}
+  @media(max-width:700px){.wrap{padding:36px 18px 70px}}
+
+  .kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay-deep);display:flex;align-items:center;gap:12px}
+  .kicker::before{content:'';width:30px;height:1px;background:var(--clay-deep)}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-.02em;margin:24px 0 18px;text-wrap:balance}
+  h1 em{font-style:italic;color:var(--clay-deep);font-weight:400}
+  h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:32px;margin:48px 0 16px;letter-spacing:-.01em}
+  h2 .num{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--clay-deep);letter-spacing:.06em;margin-right:14px;vertical-align:.2em}
+  h3{font-family:'Manrope',sans-serif;font-weight:600;font-size:16px;margin:24px 0 10px}
+  .lead{font-size:18px;line-height:1.55;color:var(--ink-soft);max-width:720px}
+  .lead b{font-weight:500;color:var(--ink)}
+
+  /* Stat grid */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);margin:48px 0 16px;border:1px solid var(--rule)}
+  @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{background:var(--paper);padding:22px 20px}
+  .stat .n{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:42px;line-height:1;letter-spacing:-.02em;color:var(--ink)}
+  .stat .n em{font-style:italic;color:var(--clay-deep)}
+  .stat .l{font-size:12.5px;color:var(--ink-faint);margin-top:8px;line-height:1.4}
+
+  /* Strategy cards */
+  .strategy{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:24px 0}
+  @media(max-width:700px){.strategy{grid-template-columns:1fr}}
+  .pillar{background:var(--paper-warm);border:1px solid var(--rule);border-radius:5px;padding:22px 24px}
+  .pillar .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:var(--clay-deep);text-transform:uppercase;margin-bottom:10px}
+  .pillar h4{margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:22px;letter-spacing:-.005em}
+  .pillar p{margin:0;font-size:14px;line-height:1.55;color:var(--ink-soft)}
+
+  /* Recommendations table */
+  .recs{margin:24px 0;border-top:1px solid var(--rule)}
+  .rec{display:grid;grid-template-columns:64px 1fr 110px;gap:20px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:start}
+  @media(max-width:700px){.rec{grid-template-columns:1fr;gap:6px}}
+  .rec .id{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--clay-deep);font-weight:600;letter-spacing:.06em}
+  .rec h4{margin:0 0 6px;font-weight:500;font-size:15.5px;color:var(--ink)}
+  .rec p{margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
+  .rec p b{color:var(--ink)}
+  .pri{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:2px;background:#fff;border:1px solid var(--rule);align-self:start;width:fit-content}
+  .pri::before{content:'';width:5px;height:5px;border-radius:50%}
+  .pri.p0::before{background:#9a3a26} .pri.p0{color:#9a3a26;border-color:#e3c8be}
+  .pri.p1::before{background:var(--clay-deep)} .pri.p1{color:var(--clay-deep);border-color:#e6d3c2}
+  .pri.p2::before{background:var(--moss)} .pri.p2{color:var(--moss);border-color:#cbd3c2}
+
+  /* Files block */
+  .files{margin-top:32px;background:var(--paper-warm);border:1px solid var(--rule);border-radius:6px;padding:8px 0;overflow:hidden}
+  .file-row{display:grid;grid-template-columns:280px 1fr;gap:24px;padding:14px 24px;border-bottom:1px solid var(--rule);align-items:center}
+  .file-row:last-child{border-bottom:0}
+  .file-row code{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink);font-weight:500;background:#fff;padding:4px 9px;border-radius:3px;border:1px solid var(--rule)}
+  .file-row span{font-size:13.5px;color:var(--ink-soft);line-height:1.5}
+  @media(max-width:700px){.file-row{grid-template-columns:1fr;gap:6px;padding:14px 18px}}
+
+  /* Steps */
+  .steps{margin-top:24px}
+  .step{display:grid;grid-template-columns:36px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule)}
+  .step .n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--clay-deep);font-weight:600}
+  .step b{font-weight:500;color:var(--ink)}
+  .step p{margin:0 0 6px;font-size:14.5px;line-height:1.6;color:var(--ink-soft)}
+  .step code{font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--paper-warm);padding:2px 6px;border-radius:2px;color:var(--ink)}
+  .step ul{margin:6px 0 6px 18px;font-size:14px;line-height:1.7;color:var(--ink-soft)}
+
+  /* Download block */
+  .download-block{margin-top:48px;background:var(--paper-warm);border:1px solid var(--rule);border-radius:6px;padding:32px}
+  .download-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  @media(max-width:700px){.download-grid{grid-template-columns:1fr}}
+  .dl{display:flex;flex-direction:column;gap:4px;padding:16px 18px;background:#fff;border:1px solid var(--rule);border-radius:4px;text-decoration:none;color:var(--ink);transition:all .12s}
+  .dl:hover{border-color:var(--clay);transform:translateY(-1px)}
+  .dl-name{font-family:'JetBrains Mono',monospace;font-size:13.5px;font-weight:500;color:var(--ink)}
+  .dl-name::after{content:' ↓';color:var(--clay)}
+  .dl-meta{font-size:12.5px;color:var(--ink-faint)}
+
+  /* Prompt block */
+  .prompt-wrap{margin-top:48px;background:var(--code);color:#e7e1d3;border-radius:8px;overflow:hidden;box-shadow:0 4px 24px rgba(22,19,16,.12)}
+  .prompt-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#0f0d0a;border-bottom:1px solid #2a2620;position:sticky;top:0;z-index:5}
+  .prompt-bar .name{font-family:'JetBrains Mono',monospace;font-size:12px;color:#a8a195;letter-spacing:.05em;display:flex;align-items:center;gap:10px}
+  .prompt-bar .name::before{content:'';width:8px;height:8px;border-radius:50%;background:#7a9d6e}
+  .copy{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#e7e1d3;background:#2a2620;border:1px solid #3a342c;padding:9px 16px;border-radius:3px;cursor:pointer;transition:all .15s}
+  .copy:hover{background:var(--clay);border-color:var(--clay);color:#fff}
+  .copy.copied{background:#7a9d6e;border-color:#7a9d6e;color:#fff}
+  pre.prompt{margin:0;padding:28px 28px 40px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7;white-space:pre-wrap;max-height:520px;overflow-y:auto;color:#e7e1d3}
+  @media(max-width:700px){pre.prompt{padding:20px 16px 32px;font-size:11.5px}}
+
+  /* Misc */
+  .pull{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:26px;line-height:1.32;color:var(--ink);background:linear-gradient(90deg, var(--paper-warm) 0%, transparent 100%);padding:24px 28px;border-left:2px solid var(--clay-deep);margin:32px 0;font-style:italic;max-width:760px}
+  .pull em{font-style:italic;color:var(--clay-deep);font-weight:400}
+  .small{font-size:13px;color:var(--ink-faint);margin-top:14px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Этап SEO · от топового специалиста</div>
+  <h1>Вывести present-stroy.рф<br>в <em>топ Яндекса</em> по Твери</h1>
+  <p class="lead">
+    Полный план SEO-этапа: где мы сейчас, что нужно сделать, какой будет результат. <b>Главный канал — Яндекс</b> (60–70% рынка в РФ), он у нас в приоритете. Google — второй. Локальный фокус — Тверь и область.
+  </p>
+
+  <div class="stats">
+    <div class="stat"><div class="n">2&minus;3<em>мес</em></div><div class="l">До первых органических лидов из Яндекса</div></div>
+    <div class="stat"><div class="n">30+</div><div class="l">Ключевых коммерческих запросов в работе</div></div>
+    <div class="stat"><div class="n">20</div><div class="l">SEO-статей в контент-кластере</div></div>
+    <div class="stat"><div class="n">~150К<em>₽</em></div><div class="l">Стоимость подобной работы у агентства</div></div>
+  </div>
+
+  <div class="pull">
+    SEO в строительной нише с чеком 5–15 млн ₽ — это не «гонка ключей»,<br>
+    это <em>репутация в выдаче</em>. Один лид — окупает год работы.
+  </div>
+
+
+  <h2><span class="num">I.</span>Где мы сейчас</h2>
+  <p class="lead" style="font-size:16px">
+    Я зашёл на сайт глазами Яндекса и проверил по чек-листу. Вот что нашёл:
+  </p>
+
+  <div class="recs">
+    <div class="rec">
+      <span class="id">A.1</span>
+      <div>
+        <h4>Сайт живёт на vercel.app, основной домен <code>.рф</code> не подключён</h4>
+        <p>Это **главное** препятствие: пока сайт на временном домене, любое SEO впустую — вся накопленная сила уйдёт в воду при переезде. Но это уже на дорожной карте как техдолг.</p>
+      </div>
+      <span class="pri p0">Блокер</span>
+    </div>
+
+    <div class="rec">
+      <span class="id">A.2</span>
+      <div>
+        <h4>Мета-теги дублируются на всех страницах</h4>
+        <p>Title и description у <code>/about</code> те же, что у главной. Яндексу непонятно, что чему соответствует. Это легко исправляется — см. задачу 1.2 в промте.</p>
+      </div>
+      <span class="pri p0">Блокер</span>
+    </div>
+
+    <div class="rec">
+      <span class="id">A.3</span>
+      <div>
+        <h4>Нет ни одной schema.org-разметки</h4>
+        <p>Яндекс и Google не видят, что компания — это <code>LocalBusiness</code>, проекты — это <code>Product</code>, дома — это <code>RealEstateListing</code>. Из-за этого нет расширенных сниппетов в выдаче (рейтинг, цена, фото).</p>
+      </div>
+      <span class="pri p0">Блокер</span>
+    </div>
+
+    <div class="rec">
+      <span class="id">A.4</span>
+      <div>
+        <h4>Нет реквизитов в подвале</h4>
+        <p>ИНН, ОГРН, юр.адрес — Яндекс это видит и учитывает в коммерческих факторах. Без них компанию сложнее «опознать» как реальную.</p>
+      </div>
+      <span class="pri p1">Важно</span>
+    </div>
+
+    <div class="rec">
+      <span class="id">A.5</span>
+      <div>
+        <h4>Нет SEO-контента — только акции и проекты</h4>
+        <p>Информационные запросы («сколько стоит построить дом», «дом из газоблока плюсы и минусы») уходят к конкурентам и агрегаторам. А это 60% всего поискового трафика в строительной нише.</p>
+      </div>
+      <span class="pri p1">Важно</span>
+    </div>
+
+    <div class="rec">
+      <span class="id">A.6</span>
+      <div>
+        <h4>Не подключены Я.Вебмастер и Метрика с целями</h4>
+        <p>Без них мы летим вслепую: непонятно, какие страницы ранжируются, какие — нет, какие формы конвертят. Цели нужно завести с самого начала.</p>
+      </div>
+      <span class="pri p1">Важно</span>
+    </div>
+
+    <div class="rec">
+      <span class="id">A.7</span>
+      <div>
+        <h4>Компания не заявлена в Я.Бизнесе</h4>
+        <p>Это критично для локального SEO. Я.Бизнес даёт «компания в правой колонке» по запросу «презент-строй тверь», рейтинг, отзывы, карту. Без него локальный поиск работает на половину силы.</p>
+      </div>
+      <span class="pri p1">Важно</span>
+    </div>
+  </div>
+
+
+  <h2><span class="num">II.</span>Стратегия — 7 направлений</h2>
+
+  <div class="strategy">
+    <div class="pillar">
+      <div class="label">1 · Технический фундамент</div>
+      <h4>Без этого ничего не ранжируется</h4>
+      <p>canonical, sitemap, robots, метаданные, переезд на .рф. Это инфраструктура: если её нет, остальное бессмысленно.</p>
+    </div>
+    <div class="pillar">
+      <div class="label">2 · Локальное SEO</div>
+      <h4>Главное для Твери</h4>
+      <p>NAP в подвале, LocalBusiness в schema, Я.Бизнес, 2ГИС. Локальный бизнес выигрывает у федералов в радиусе 50 км.</p>
+    </div>
+    <div class="pillar">
+      <div class="label">3 · Семантическое ядро</div>
+      <h4>30+ запросов на старте</h4>
+      <p>Распределены по страницам — главная под бренд, проекты под коммерцию, статьи под хвосты. Без дублей и каннибализации.</p>
+    </div>
+    <div class="pillar">
+      <div class="label">4 · Микроразметка</div>
+      <h4>schema.org на всё</h4>
+      <p>Organization, Product, RealEstateListing, FAQPage, BreadcrumbList, Review. Даёт расширенные сниппеты и +CTR в выдаче.</p>
+    </div>
+    <div class="pillar">
+      <div class="label">5 · Контент-кластеры</div>
+      <h4>20 статей за 5 месяцев</h4>
+      <p>Информационные запросы, которые приводят горячий трафик. Не «как построить дом» — а «сколько стоит построить дом в Твери в 2026».</p>
+    </div>
+    <div class="pillar">
+      <div class="label">6 · Поведенческие</div>
+      <h4>Яндекс смотрит, как вы себя ведёте</h4>
+      <p>Время на странице, глубина, отказы. Это влияет на ранжирование больше, чем у Google. Калькуляторы, FAQ, длинные тексты.</p>
+    </div>
+  </div>
+
+  <p class="small"><b>7-е направление</b> — мониторинг (Я.Вебмастер, Метрика, GSC) — критично, но это инструментарий, а не стратегия.</p>
+
+
+  <h2><span class="num">III.</span>Ожидаемый результат</h2>
+
+  <div class="strategy">
+    <div class="pillar">
+      <div class="label">Через 4 недели</div>
+      <h4>Технический ноль</h4>
+      <p>Сайт индексируется чисто, мета уникальны, разметка валидна, Метрика собирает данные. Это базовый уровень — отсюда стартуем.</p>
+    </div>
+    <div class="pillar">
+      <div class="label">Через 2–3 месяца</div>
+      <h4>Топ-30 по средне-частотным</h4>
+      <p>«проекты домов тверь», «дом из газоблока тверь», «купить дом в твери». Появляются расширенные сниппеты. 2–5 органических лидов в месяц.</p>
+    </div>
+    <div class="pillar">
+      <div class="label">Через 6 месяцев</div>
+      <h4>Топ-10 по части запросов</h4>
+      <p>Бренд + «коттеджный посёлок тверь» + 5–7 средне-частотных. Контент-кластер начинает работать — статьи приводят холодный трафик. 10–25 лидов в месяц.</p>
+    </div>
+    <div class="pillar">
+      <div class="label">Через 12 месяцев</div>
+      <h4>Доминирование в нише</h4>
+      <p>Топ-3 по бренду и большинству коммерческих запросов. Статьи в топ-10 по информационным. Я.Бизнес-карточка с 30+ отзывами. SEO — основной канал лидов.</p>
+    </div>
+  </div>
+
+
+  <h2><span class="num">IV.</span>Что я подготовил для Claude Code</h2>
+
+  <p style="font-size:15px;color:var(--ink-soft);max-width:720px">
+    Промт <code>prompt-seo.md</code> — это полноценное ТЗ от SEO-специалиста, разбитое на 9 задач. Под каждой — конкретные требования, готовые шаблоны кода, готовые тексты meta-тегов, готовые JSON-LD объекты. Claude Code не нужно ничего додумывать.
+  </p>
+
+  <div class="files">
+    <div class="file-row"><code>prompt-seo.md</code><span><b>9 задач:</b> технический фундамент → мета-теги → schema.org → семантика → контент → локальное SEO → CWV → поведенческие → мониторинг.</span></div>
+    <div class="file-row"><code>_design-reference/prompt-seo.md</code><span>Тот же файл, путь в репозитории. Claude Code читает по этому адресу.</span></div>
+    <div class="file-row"><code>debt.md</code><span>В нём появятся новые TODO: ИНН, ОГРН, коды Я.Вебмастера и GSC, реальный рейтинг компании.</span></div>
+  </div>
+
+
+  <h2><span class="num">V.</span>Порядок действий</h2>
+
+  <div class="steps">
+    <div class="step"><div class="n">01</div><div>
+      <p><b>Скачайте</b> <code>prompt-seo.md</code> кнопкой ниже и положите в репозиторий в <code>_design-reference/prompt-seo.md</code>.</p>
+    </div></div>
+    <div class="step"><div class="n">02</div><div>
+      <p><b>Скопируйте промт</b> кнопкой «Скопировать всё» внизу и вставьте первым сообщением в Claude Code в репозитории проекта.</p>
+    </div></div>
+    <div class="step"><div class="n">03</div><div>
+      <p><b>Claude Code сделает задачи 1.1 → 1.3 в первую очередь</b> — это технический фундамент (sitemap, robots, мета, schema). Без них всё остальное бессмысленно. Приму через Vercel preview.</p>
+    </div></div>
+    <div class="step"><div class="n">04</div><div>
+      <p><b>Параллельно вам нужно</b> сделать офлайн-действия (не код):</p>
+      <ul>
+        <li>Заявить компанию в <b>Я.Бизнесе</b> — это №1 приоритет</li>
+        <li>Получить код подтверждения <b>Я.Вебмастера</b> → внести в debt.md</li>
+        <li>Получить код <b>Google Search Console</b></li>
+        <li>Добавиться в <b>2ГИС</b></li>
+        <li>Прислать ИНН, ОГРН, юр.адрес, точный адрес офиса</li>
+      </ul>
+    </div></div>
+    <div class="step"><div class="n">05</div><div>
+      <p><b>После приёма 1.1–1.3</b> — Claude Code пойдёт по 1.4, 1.6, 1.7, 1.8, 1.9 (могут параллельно). Контент-кластер 1.5 — после, нужны тексты статей (или закажем копирайтера отдельно).</p>
+    </div></div>
+    <div class="step"><div class="n">06</div><div>
+      <p><b>Запросите отзывы у клиентов</b> в Я.Картах и 2ГИС. Минимум 10 отзывов за первые 2 месяца — критично для локального SEO.</p>
+    </div></div>
+  </div>
+
+
+  <div class="download-block">
+    <div class="kicker" style="margin-bottom:18px">— Скачать промт</div>
+    <div class="download-grid">
+      <a class="dl" href="prompt-seo.md" download>
+        <span class="dl-name">prompt-seo.md</span>
+        <span class="dl-meta">SEO-промт для Claude Code → _design-reference/</span>
+      </a>
+      <a class="dl" href="audit.html" download>
+        <span class="dl-name">audit.html</span>
+        <span class="dl-meta">Маркетинговый аудит (для контекста)</span>
+      </a>
+    </div>
+  </div>
+
+
+  <div class="prompt-wrap" id="prompt">
+    <div class="prompt-bar">
+      <div class="name">prompt-seo.md</div>
+      <button class="copy" id="copyBtn" type="button">Скопировать всё</button>
+    </div>
+    <pre class="prompt" id="promptText">загрузка…</pre>
+  </div>
+
+</div>
+
+<script>
+  fetch('prompt-seo.md').then(r => r.text()).then(t => {
+    document.getElementById('promptText').textContent = t;
+  }).catch(() => {
+    document.getElementById('promptText').textContent = 'Не удалось загрузить prompt-seo.md — откройте файл напрямую.';
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    const txt = document.getElementById('promptText').textContent;
+    navigator.clipboard.writeText(txt).then(() => {
+      const b = document.getElementById('copyBtn');
+      b.textContent = 'Скопировано ✓';
+      b.classList.add('copied');
+      setTimeout(() => { b.textContent = 'Скопировать всё'; b.classList.remove('copied'); }, 1800);
+    });
+  });
+</script>
+</body>
+</html>

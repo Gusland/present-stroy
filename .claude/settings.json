@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "\"Bash(sed *)\",\r\"Bash(grep *)\",\r\"Bash(git status)\",\r\"Bash(git log *)\",\r\"Bash(git diff *)\",\r\"Bash(ls *)\",\r\"Bash(mv *)\",\r\"Bash(mkdir *)\""
+    ]
+  }
+}

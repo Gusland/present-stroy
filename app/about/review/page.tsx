@@ -6,6 +6,7 @@ import ContactFormSection from "@/components/sections/ContactFormSection";
 export const metadata: Metadata = {
   title: "Отзывы клиентов",
   description: "Отзывы клиентов о строительной компании Презент-Строй в Твери.",
+  alternates: { canonical: "/about/review" },
 };
 
 const reviews = [

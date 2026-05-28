@@ -7,6 +7,7 @@ import ContactFormSection from "@/components/sections/ContactFormSection";
 export const metadata: Metadata = {
   title: "Виды построенных коттеджей — Волжский берег",
   description: "Построенные коттеджи в эко-посёлке «Волжский берег» в Твери. Фотогалерея 19 готовых домов.",
+  alternates: { canonical: "/volzhsky-bereg/kottedzhi" },
 };
 
 const cottagePhotos = [

@@ -4,12 +4,15 @@ import ServicePageTemplate from "@/components/sections/ServicePageTemplate";
 export const metadata: Metadata = {
   title: "Ремонт и отделка квартир и офисов в Твери",
   description: "Ремонт квартир и офисов в Твери: косметический от 8 500 ₽/м², капитальный от 11 500 ₽/м², дизайнерский от 14 000 ₽/м². Бесплатный выезд замерщика.",
+  alternates: {
+    canonical: "/services/remont-i-otdelka-kvartir-i-ofisov",
+  },
 };
 
 export default function RemontPage() {
   return (
     <ServicePageTemplate
-      title="Ремонт и отделка квартир и офисов"
+      title="Ремонт и отделка квартир и офисов в Твери"
       subtitle="Качественный ремонт в соответствии с вашими пожеланиями — для квартир, коттеджей и офисов"
       promo="При заказе ремонта — бесплатный выезд замерщика и фиксированная цена в договоре"
       description={[

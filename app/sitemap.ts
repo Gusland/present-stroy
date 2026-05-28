@@ -3,7 +3,6 @@ import { projects } from "@/data/projects";
 import { buildObjects } from "@/data/objects";
 import { news } from "@/data/news";
 import { village } from "@/data/villages";
-import { articles } from "@/lib/articles";
 
 const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
@@ -35,7 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/gallery`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE}/news`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE}/contacts`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
-    { url: `${BASE}/articles`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
   ];
 
   const projectRoutes: MetadataRoute.Sitemap = projects.map((p) => ({
@@ -66,12 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: lot.status === "available" ? 0.9 : 0.5,
   }));
 
-  const articleRoutes: MetadataRoute.Sitemap = articles.map((a) => ({
-    url: `${BASE}/articles/${a.slug}`,
-    lastModified: new Date(a.dateModified ?? a.datePublished),
-    changeFrequency: "monthly",
-    priority: 0.5,
-  }));
-
-  return [...staticRoutes, ...projectRoutes, ...objectRoutes, ...newsRoutes, ...lotRoutes, ...articleRoutes];
+  return [...staticRoutes, ...projectRoutes, ...objectRoutes, ...newsRoutes, ...lotRoutes];
 }

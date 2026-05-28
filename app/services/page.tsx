@@ -6,9 +6,10 @@ import ContactFormSection from "@/components/sections/ContactFormSection";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "Услуги",
+  title: "Услуги строительной компании в Твери",
   description:
     "Полный комплекс строительных услуг в Твери: строительство из кирпича и газосиликата, ремонт, штукатурка, электрика, сантехника, кровля, фасад, фундамент.",
+  alternates: { canonical: "/services" },
 };
 
 export default function ServicesPage() {

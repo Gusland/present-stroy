@@ -6,6 +6,7 @@ import ContactFormSection from "@/components/sections/ContactFormSection";
 export const metadata: Metadata = {
   title: "Ипотека и кредитование",
   description: "Помогаем оформить ипотеку на строительство дома в Твери. Семейная ипотека от 6%, IT-ипотека от 5%, материнский капитал.",
+  alternates: { canonical: "/about/ipoteka" },
 };
 
 const programs = [

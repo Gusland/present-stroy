@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Волжский Берег · генплан</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="volzhsky-styles.css">
+
+<style>
+  /* Just the plot-map block, with breathing-room around */
+  body { padding: 56px 0; }
+  .standalone { max-width: 1320px; margin: 0 auto; padding: 0 24px; }
+  .standalone h2 { font-size: clamp(32px, 4vw, 56px); margin: 0 0 8px; }
+  .standalone .lede { color: var(--ink-soft); max-width: 580px; margin: 0 0 40px; font-size: 16px; }
+  .plotmap { padding: 0; background: transparent; }
+  .swatch-row { display: flex; gap: 6px; margin: 4px 0 16px; }
+  .swatch-row .sw { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--rule-strong); transition: opacity .12s; }
+  .swatch-row .sw.dark   { background: #4a2f23; }
+  .swatch-row .sw.red    { background: #9a3a26; }
+  .swatch-row .sw.cognac { background: #8c5d3d; }
+  .price-strike { text-decoration: line-through; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+
+<div class="standalone">
+  <div class="kicker accent" style="margin-bottom:20px">— Генплан · Волжский Берег</div>
+  <h2>Выберите свой дом<br>на берегу Волги.</h2>
+  <p class="lede">
+    Двадцать два дома в двух линиях вдоль Волги. Девятнадцать заселены, три ещё свободны.
+    Все одинаковые: 138 м², 11 соток, 14,3 млн ₽ — разница только в цвете облицовочного кирпича.
+  </p>
+
+  <section class="plotmap">
+    <div class="layout">
+      <div>
+        <div class="filters" id="plotFilters">
+          <button class="on" data-filter="all">Все 22</button>
+          <button data-filter="available">Свободные · 3</button>
+          <button data-filter="sold">Проданы · 19</button>
+          <button data-filter="line1">1-я линия · у воды</button>
+          <button data-filter="line2">2-я линия · у дороги</button>
+        </div>
+
+        <div class="canvas">
+          <svg viewBox="0 0 1200 620" id="plotSvg" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <pattern id="water" patternUnits="userSpaceOnUse" width="60" height="14">
+                <path d="M0 7 Q15 0 30 7 T60 7" fill="none" stroke="rgba(46,78,92,0.35)" stroke-width="1"/>
+              </pattern>
+              <pattern id="forest" patternUnits="userSpaceOnUse" width="20" height="20">
+                <circle cx="6" cy="6" r="2" fill="rgba(91,106,75,0.45)"/>
+                <circle cx="16" cy="14" r="2" fill="rgba(91,106,75,0.3)"/>
+              </pattern>
+              <pattern id="sand" patternUnits="userSpaceOnUse" width="6" height="6">
+                <rect width="6" height="6" fill="#ede0c6"/>
+                <circle cx="2" cy="3" r="0.4" fill="#c9b88e"/>
+              </pattern>
+            </defs>
+
+            <!-- River with gentle curve at top -->
+            <path d="M0 0 L1200 0 L1200 60 Q1100 80 900 70 Q700 60 500 75 Q300 85 0 70 Z" fill="url(#water)"/>
+            <path d="M0 70 Q300 85 500 75 Q700 60 900 70 Q1100 80 1200 60" stroke="#2e4e5c" stroke-width="1" fill="none"/>
+            <text x="60" y="38" fill="#2e4e5c" font-family="Cormorant Garamond" font-style="italic" font-size="28" font-weight="300">р. Волга</text>
+            <text x="1010" y="38" fill="rgba(46,78,92,0.6)" font-family="JetBrains Mono" font-size="10" letter-spacing="2">→ к Иваньковскому в-щу</text>
+
+            <!-- Beach strip -->
+            <path d="M0 70 Q300 85 500 75 Q700 60 900 70 Q1100 80 1200 60 L1200 100 L0 100 Z" fill="url(#sand)" opacity="0.7"/>
+
+            <!-- Pier — sticks out near plot 7 on line 1 -->
+            <rect x="650" y="60" width="60" height="50" fill="#b88560" opacity="0.85"/>
+            <rect x="670" y="36" width="20" height="32" fill="#b88560"/>
+            <text x="680" y="130" text-anchor="middle" fill="#5d564d" font-family="JetBrains Mono" font-size="9" letter-spacing="1.5">ПИРС</text>
+
+            <!-- First-line plots: 1-11 (closer to river) -->
+            <g id="plots1"></g>
+
+            <!-- Inner road between rows -->
+            <rect x="0" y="295" width="1200" height="28" fill="#e0d4ba"/>
+            <line x1="20" y1="309" x2="180" y2="309" stroke="#fff" stroke-width="1" stroke-dasharray="8 8"/>
+            <line x1="220" y1="309" x2="380" y2="309" stroke="#fff" stroke-width="1" stroke-dasharray="8 8"/>
+            <line x1="420" y1="309" x2="580" y2="309" stroke="#fff" stroke-width="1" stroke-dasharray="8 8"/>
+            <line x1="620" y1="309" x2="780" y2="309" stroke="#fff" stroke-width="1" stroke-dasharray="8 8"/>
+            <line x1="820" y1="309" x2="980" y2="309" stroke="#fff" stroke-width="1" stroke-dasharray="8 8"/>
+            <line x1="1020" y1="309" x2="1180" y2="309" stroke="#fff" stroke-width="1" stroke-dasharray="8 8"/>
+
+            <!-- Second-line plots: 12-22 (closer to road/forest) -->
+            <g id="plots2"></g>
+
+            <!-- Bottom road and forest -->
+            <rect x="0" y="552" width="1200" height="22" fill="#e0d4ba"/>
+            <rect x="0" y="574" width="1200" height="46" fill="url(#forest)"/>
+            <text x="600" y="606" text-anchor="middle" fill="#5b6a4b" font-family="Cormorant Garamond" font-style="italic" font-size="20" font-weight="300">лес · к дороге на Тверь</text>
+
+            <!-- North arrow + scale -->
+            <g transform="translate(1140, 568)">
+              <circle r="14" fill="#fff" stroke="#161310" stroke-width="0.8"/>
+              <path d="M0 -10 L4 8 L0 4 L-4 8 Z" fill="#161310"/>
+              <text y="22" text-anchor="middle" font-family="JetBrains Mono" font-size="8" fill="#161310">С</text>
+            </g>
+            <g transform="translate(40, 568)">
+              <line x1="0" y1="0" x2="80" y2="0" stroke="#161310" stroke-width="1"/>
+              <line x1="0" y1="-3" x2="0" y2="3" stroke="#161310" stroke-width="1"/>
+              <line x1="80" y1="-3" x2="80" y2="3" stroke="#161310" stroke-width="1"/>
+              <text x="0" y="14" font-family="JetBrains Mono" font-size="8" fill="#161310">0</text>
+              <text x="80" y="14" font-family="JetBrains Mono" font-size="8" fill="#161310">50 м</text>
+            </g>
+
+          </svg>
+
+          <div class="legend">
+            <span><i style="background:rgba(184,133,96,0.18); border:1px solid rgba(22,19,16,0.25)"></i> свободен</span>
+            <span><i style="background:rgba(22,19,16,0.5); border:1px solid rgba(22,19,16,0.25)"></i> продан</span>
+            <span><i style="background:#b88560"></i> выбран</span>
+            <span style="margin-left:auto; font-style:italic; font-size:11px; color:var(--ink-faint)">— все участки 11 соток, дома 138 м²</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="card" id="plotCard">
+          <div class="pid mono">Дом № <span id="pNum">04</span> · <span id="pLineLbl">1-я линия · у воды</span></div>
+          <div class="ptitle" id="pTitle">138 м²</div>
+          <div class="pline" id="pSubtitle">Угловой к пирсу · тёмно-коричневый кирпич</div>
+
+          <div class="swatch-row" id="swatchRow"></div>
+
+          <dl>
+            <dt>Площадь дома</dt>     <dd id="pArea">138 м²</dd>
+            <dt>Участок</dt>          <dd id="pPlot">11 соток</dd>
+            <dt>Спальни / санузлы</dt><dd id="pRooms">3 / 2</dd>
+            <dt>Гостиная</dt>         <dd id="pLR">70 м²</dd>
+            <dt>До пирса и пляжа</dt> <dd id="pDist">50 м</dd>
+            <dt>Кирпич</dt>           <dd id="pBrick">тёмно-коричневый</dd>
+            <dt>Сдан</dt>             <dd id="pYear">2023</dd>
+          </dl>
+
+          <div class="price-row">
+            <span class="lbl">Цена в договоре</span>
+            <div class="price"><span id="pPrice">14,3</span><span class="u">млн&nbsp;₽</span></div>
+          </div>
+
+          <div class="actions">
+            <a href="#" class="btn filled" id="ctaPrimary">
+              <span>Записаться на просмотр</span>
+              <span class="arrow">→</span>
+            </a>
+            <a href="#" class="btn" id="ctaSecondary">
+              <span>Скачать паспорт дома · PDF</span>
+              <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ═════════════════════════════════════════════════════
+   22 lots laid out in 2 rows of 11 — Ienevo Bereg style.
+   Line 1 (closer to river): plots 1–11. Available: #4.
+   Line 2 (closer to road):  plots 12–22. Available: #19, #20.
+   ═════════════════════════════════════════════════════ */
+
+const LOTS = [
+  // Line 1 (у воды) — все 11 проданы
+  { id:1,  line:1, status:'sold' },
+  { id:2,  line:1, status:'sold' },
+  { id:3,  line:1, status:'sold' },
+  { id:4,  line:1, status:'sold' },
+  { id:5,  line:1, status:'sold' },
+  { id:6,  line:1, status:'sold' },
+  { id:7,  line:1, status:'sold' },
+  { id:8,  line:1, status:'sold' },
+  { id:9,  line:1, status:'sold' },
+  { id:10, line:1, status:'sold' },
+  { id:11, line:1, status:'sold' },
+
+  // Line 2 (у дороги) — свободны №3 (по счёту = id 14), №9 (id 20), №10 (id 21)
+  { id:12, line:2, status:'sold' },
+  { id:13, line:2, status:'sold' },
+  { id:14, line:2, status:'available', brick:'dark',   brickRu:'тёмно-коричневый кирпич', sub:'2-я линия, 3-й по счёту · западный край', distM:110 },
+  { id:15, line:2, status:'sold' },
+  { id:16, line:2, status:'sold' },
+  { id:17, line:2, status:'sold' },
+  { id:18, line:2, status:'sold' },
+  { id:19, line:2, status:'sold' },
+  { id:20, line:2, status:'available', brick:'red',    brickRu:'красный кирпич',          sub:'2-я линия, 9-й по счёту · быстрый въезд', distM:130 },
+  { id:21, line:2, status:'available', brick:'cognac', brickRu:'коньячный кирпич',        sub:'2-я линия, 10-й по счёту · восточный край · максимум солнца', distM:140 },
+  { id:22, line:2, status:'sold' },
+];
+
+const svg = document.getElementById('plotSvg');
+const g1  = document.getElementById('plots1');
+const g2  = document.getElementById('plots2');
+
+// Row 1: 11 plots, y=100, h=190
+// Row 2: 11 plots, y=325, h=220
+const row1 = LOTS.filter(l => l.line === 1);
+const row2 = LOTS.filter(l => l.line === 2);
+const innerW = 1140; // 1200 - 30*2 margin
+
+const w1 = Math.floor(innerW / row1.length) - 4;
+let x = 30;
+row1.forEach(l => { drawPlot(l, x, 100, w1, 190, g1); x += w1 + 4; });
+
+const w2 = Math.floor(innerW / row2.length) - 4;
+x = 30;
+// Line 2 numbering goes right-to-left (per cadastral plan) — render in reverse order
+row2.slice().reverse().forEach(l => { drawPlot(l, x, 325, w2, 220, g2); x += w2 + 4; });
+
+function drawPlot(lot, x, y, w, h, parent) {
+  const ns = 'http://www.w3.org/2000/svg';
+  const g = document.createElementNS(ns, 'g');
+  g.setAttribute('class', `plot ${lot.status}`);
+  g.dataset.id = lot.id;
+  g.dataset.status = lot.status;
+  g.dataset.line = lot.line;
+
+  // Soft halo behind available plots
+  if (lot.status === 'available') {
+    const halo = document.createElementNS(ns, 'rect');
+    halo.setAttribute('x', x - 4); halo.setAttribute('y', y - 4);
+    halo.setAttribute('width', w + 8); halo.setAttribute('height', h + 8);
+    halo.setAttribute('fill', 'rgba(184,133,96,0.16)');
+    halo.setAttribute('pointer-events', 'none');
+    g.appendChild(halo);
+  }
+
+  const rect = document.createElementNS(ns, 'rect');
+  rect.setAttribute('x', x); rect.setAttribute('y', y);
+  rect.setAttribute('width', w); rect.setAttribute('height', h);
+  g.appendChild(rect);
+
+  // Number at top
+  const num = document.createElementNS(ns, 'text');
+  num.setAttribute('x', x + w/2);
+  num.setAttribute('y', y + 22);
+  num.setAttribute('text-anchor', 'middle');
+  num.textContent = String(lot.id).padStart(2, '0');
+  num.style.fontSize = '13px';
+  num.style.fontWeight = '600';
+  g.appendChild(num);
+
+  // Plot size at bottom
+  const sz = document.createElementNS(ns, 'text');
+  sz.setAttribute('x', x + w/2);
+  sz.setAttribute('y', y + h - 18);
+  sz.setAttribute('text-anchor', 'middle');
+  sz.textContent = '11 сот.';
+  sz.style.fontSize = '10px';
+  g.appendChild(sz);
+
+  // Price for available
+  if (lot.status === 'available') {
+    const pr = document.createElementNS(ns, 'text');
+    pr.setAttribute('x', x + w/2);
+    pr.setAttribute('y', y + h/2 + 4);
+    pr.setAttribute('text-anchor', 'middle');
+    pr.textContent = '14,3 млн ₽';
+    pr.style.fontSize = '11px';
+    pr.style.fontStyle = 'italic';
+    pr.style.opacity = '0.75';
+    g.appendChild(pr);
+  }
+
+  g.addEventListener('click', () => selectPlot(lot));
+  g.addEventListener('mouseenter', () => renderPlotCard(lot));
+  parent.appendChild(g);
+}
+
+function selectPlot(lot) {
+  document.querySelectorAll('.plot.is-active').forEach(el => el.classList.remove('is-active'));
+  const el = document.querySelector(`.plot[data-id="${lot.id}"]`);
+  el && el.classList.add('is-active');
+  renderPlotCard(lot);
+}
+
+function renderPlotCard(lot) {
+  document.getElementById('pNum').textContent = String(lot.id).padStart(2, '0');
+  document.getElementById('pLineLbl').textContent = lot.line === 1
+    ? '1-я линия · у воды' : '2-я линия · у дороги';
+
+  const swatchRow = document.getElementById('swatchRow');
+  const primary = document.getElementById('ctaPrimary');
+  const secondary = document.getElementById('ctaSecondary');
+
+  if (lot.status === 'available') {
+    document.getElementById('pTitle').textContent = '138 м²';
+    document.getElementById('pSubtitle').textContent = lot.sub;
+    document.getElementById('pArea').textContent = '138 м²';
+    document.getElementById('pPlot').textContent = '11 соток';
+    document.getElementById('pRooms').textContent = '3 / 2';
+    document.getElementById('pLR').textContent = '70 м²';
+    document.getElementById('pDist').textContent = lot.distM + ' м';
+    document.getElementById('pBrick').textContent = lot.brickRu;
+    document.getElementById('pYear').textContent = '2023';
+    document.getElementById('pPrice').textContent = '14,3';
+    document.querySelector('.price-row .lbl').textContent = 'Цена в договоре';
+
+    swatchRow.innerHTML = '';
+    ['dark','red','cognac'].forEach(b => {
+      const dot = document.createElement('span');
+      dot.className = 'sw ' + b;
+      dot.style.opacity = b === lot.brick ? '1' : '0.3';
+      dot.title = ({dark:'тёмно-коричневый',red:'красный',cognac:'коньячный'})[b];
+      swatchRow.appendChild(dot);
+    });
+
+    primary.innerHTML = '<span>Записаться на просмотр</span><span class="arrow">→</span>';
+    primary.style.opacity = '1';
+    primary.style.pointerEvents = 'auto';
+    secondary.style.display = '';
+  } else {
+    document.getElementById('pTitle').textContent = 'Продан';
+    document.getElementById('pSubtitle').textContent = '138 м² · 11 соток · сдан в 2023, заселён';
+    document.getElementById('pArea').textContent = '138 м²';
+    document.getElementById('pPlot').textContent = '11 соток';
+    document.getElementById('pRooms').textContent = '3 / 2';
+    document.getElementById('pLR').textContent = '70 м²';
+    document.getElementById('pDist').textContent = lot.line === 1 ? '~50 м' : '~130 м';
+    document.getElementById('pBrick').textContent = '—';
+    document.getElementById('pYear').textContent = '2023';
+    document.getElementById('pPrice').innerHTML = '<span class="price-strike">14,3</span>';
+    document.querySelector('.price-row .lbl').textContent = 'Дом продан';
+
+    swatchRow.innerHTML = '<span style="font-size:12px; color:var(--ink-soft); font-style:italic">цвет облицовки не показываем — дом куплен</span>';
+
+    primary.innerHTML = '<span>Посмотреть свободные</span><span class="arrow">→</span>';
+    primary.style.opacity = '1';
+    primary.style.pointerEvents = 'auto';
+    primary.onclick = (e) => {
+      e.preventDefault();
+      const free = LOTS.find(l => l.status === 'available');
+      if (free) selectPlot(free);
+    };
+    secondary.style.display = 'none';
+  }
+}
+
+// Filters
+document.querySelectorAll('#plotFilters button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('#plotFilters button').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    const f = b.dataset.filter;
+    document.querySelectorAll('.plot').forEach(el => {
+      const status = el.dataset.status;
+      const line = el.dataset.line;
+      let show = false;
+      if (f === 'all') show = true;
+      else if (['available','sold'].includes(f)) show = status === f;
+      else if (f === 'line1') show = line === '1';
+      else if (f === 'line2') show = line === '2';
+      el.style.opacity = show ? '1' : '0.18';
+    });
+  });
+});
+
+// Initial selection — first available
+selectPlot(LOTS.find(l => l.status === 'available'));
+</script>
+</body>
+</html>

@@ -7,6 +7,7 @@ import ContactFormSection from "@/components/sections/ContactFormSection";
 export const metadata: Metadata = {
   title: "Сертификаты",
   description: "Сертификаты и лицензии строительной компании Презент-Строй в Твери.",
+  alternates: { canonical: "/about/sertifikaty" },
 };
 
 const certificates = [
