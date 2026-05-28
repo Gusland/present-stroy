@@ -43,6 +43,7 @@ export default function VillageTicker() {
       // ignore
     }
     setVisible(false);
+    window.dispatchEvent(new Event("vb-ticker-closed"));
   };
 
   return (
