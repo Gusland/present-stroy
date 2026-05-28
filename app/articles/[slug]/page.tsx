@@ -6,8 +6,6 @@ import ContactFormSection from "@/components/sections/ContactFormSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { articleSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
 import { articles, getArticleBySlug } from "@/lib/articles";
-import SkolkoStoitPostroit from "@/components/articles/SkolkoStoitPostroit";
-import DomIzGazobloka from "@/components/articles/DomIzGazobloka";
 import IzhsVsSnt from "@/components/articles/IzhsVsSnt";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -37,8 +35,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const CONTENT_MAP: Record<string, React.FC> = {
-  "skolko-stoit-postroit-dom-v-tveri": SkolkoStoitPostroit,
-  "dom-iz-gazobloka-plyusy-minusy-tsena": DomIzGazobloka,
   "izhs-vs-snt-chto-vybrat-v-tverskoy-oblasti": IzhsVsSnt,
 };
 
