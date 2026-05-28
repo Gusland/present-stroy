@@ -6,6 +6,5 @@ export const contacts = {
   email: "present-stroy@mail.ru",
   address: "г. Тверь, ул. Маяковского, д. 33, офис 23",
   hours: "Пн–Пт: 9:00–18:00",
-  vk: "https://vk.com/present_stroy",
   mapUrl: "https://yandex.ru/maps/-/CDrVkXiP",
 };
