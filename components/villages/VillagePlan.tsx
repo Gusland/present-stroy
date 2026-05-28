@@ -143,15 +143,15 @@ export default function VillagePlan() {
                   {/* Sand strip */}
                   <rect y={88} width={VB.w} height={22} fill="#F0E68C" opacity={0.7} />
 
-                  {/* Pier */}
-                  <rect x={648} y={20} width={12} height={90} fill="#8B7355" opacity={0.9} rx={2} />
-                  <rect x={630} y={12} width={48} height={14} fill="#A0845C" opacity={0.9} rx={2} />
-                  <text x={590} y={32} fill="white" fontSize={10} opacity={0.8}>пирс</text>
+                  {/* Pier — at corner of lot 11 (x=1060) */}
+                  <rect x={1054} y={20} width={12} height={90} fill="#8B7355" opacity={0.9} rx={2} />
+                  <rect x={1036} y={12} width={48} height={14} fill="#A0845C" opacity={0.9} rx={2} />
+                  <text x={992} y={30} fill="white" fontSize={10} opacity={0.8}>пирс</text>
 
                   {/* Inner road between rows */}
                   <rect y={295} width={VB.w} height={35} fill="#D5D8DC" />
                   <line x1={0} y1={312} x2={VB.w} y2={312} stroke="white" strokeWidth={2} strokeDasharray="20,12" opacity={0.7} />
-                  <text x={20} y={308} fill="#7F8C8D" fontSize={11}>внутренняя дорога</text>
+                  <text x={20} y={308} fill="#7F8C8D" fontSize={11}>дорога</text>
 
                   {/* Ground between river and row1 */}
                   <rect y={110} width={VB.w} height={ROW1.y - 110} fill="#E8F5E9" opacity={0.5} />
@@ -162,14 +162,15 @@ export default function VillagePlan() {
                   {/* Ground below row 2 to road */}
                   <rect y={ROW2.y + ROW2.h} width={VB.w} height={555 - ROW2.y - ROW2.h} fill="#E8F5E9" opacity={0.4} />
 
-                  {/* Bottom road */}
-                  <rect y={552} width={VB.w} height={30} fill="#BDC3C7" />
-                  <line x1={0} y1={567} x2={VB.w} y2={567} stroke="white" strokeWidth={2} strokeDasharray="20,12" opacity={0.6} />
-                  <text x={20} y={563} fill="#7F8C8D" fontSize={11}>дорога</text>
-
-                  {/* Forest */}
-                  <rect y={582} width={VB.w} height={VB.h - 582} fill="#2ECC71" opacity={0.4} />
-                  <text x={20} y={608} fill="#1A7A2A" fontSize={12} fontWeight="500">лес</text>
+                  {/* Деревня Иенево */}
+                  <rect y={540} width={VB.w} height={VB.h - 540} fill="#EDE3D0" />
+                  {[80, 200, 325, 455, 585, 710, 840, 965, 1090].map((bx) => (
+                    <g key={bx}>
+                      <rect x={bx} y={552} width={24} height={19} fill="#C9A97A" stroke="#8B6840" strokeWidth={1} rx={1} />
+                      <rect x={bx + 28} y={557} width={19} height={15} fill="#C9A97A" stroke="#8B6840" strokeWidth={1} rx={1} />
+                    </g>
+                  ))}
+                  <text x={20} y={598} fill="#6B4823" fontSize={13} fontWeight="600">д. Иенево</text>
 
                   {/* ── Row labels ──────────────────────────────────────── */}
                   <text x={4} y={ROW1.y + ROW1.h / 2 + 5} fill="#1B3A5C" fontSize={11} fontWeight="600" transform={`rotate(-90, 4, ${ROW1.y + ROW1.h / 2})`} textAnchor="middle">
