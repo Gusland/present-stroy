@@ -18,10 +18,6 @@ const schema = z.object({
   honeypot: z.string().optional(),
 });
 
-// In-memory rate limit: IP → last request timestamp
-const rateLimitMap = new Map<string, number>();
-const RATE_LIMIT_MS = 60_000;
-
 const TYPE_LABEL: Record<string, string> = {
   viewing: "Запись на просмотр",
   booking: "Бронирование",
@@ -31,17 +27,6 @@ const TYPE_LABEL: Record<string, string> = {
 };
 
 export async function POST(req: NextRequest) {
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0] ??
-    req.headers.get("x-real-ip") ??
-    "unknown";
-  const now = Date.now();
-  const last = rateLimitMap.get(ip);
-  if (last && now - last < RATE_LIMIT_MS) {
-    return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-  }
-  rateLimitMap.set(ip, now);
-
   let data: z.infer<typeof schema>;
   try {
     data = schema.parse(await req.json());
