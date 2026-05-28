@@ -47,7 +47,7 @@ const villageLdJson = {
         latitude: village.coords.lat,
         longitude: village.coords.lng,
       },
-      telephone: "+7-930-165-13-29",
+      telephone: "+7-981-202-12-61",
     },
     {
       "@type": "Place",

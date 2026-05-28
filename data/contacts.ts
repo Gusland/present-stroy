@@ -1,8 +1,6 @@
 export const contacts = {
-  phone1: "+7 (4822) 75-13-29",
-  phone1Raw: "+74822751329",
-  phone2: "+7 (930) 165-13-29",
-  phone2Raw: "+79301651329",
+  phone1: "+7 (981) 202-12-61",
+  phone1Raw: "+79812021261",
   email: "present-stroy@inbox.ru",
   address: "г. Тверь, ул. Маяковского, д. 33, офис 23",
   hours: "Пн–Пт: 9:00–18:00",

@@ -101,14 +101,6 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href={`tel:${contacts.phone2Raw}`}
-                  className="hover:text-accent transition-colors"
-                >
-                  {contacts.phone2}
-                </a>
-              </li>
-              <li>
-                <a
                   href={`mailto:${contacts.email}`}
                   className="hover:text-accent transition-colors"
                 >

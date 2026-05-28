@@ -133,10 +133,10 @@ export default async function NewsArticlePage({ params }: Props) {
                   Оставить заявку
                 </Link>
                 <a
-                  href="tel:+74822751329"
+                  href="tel:+79812021261"
                   className="block text-center border border-primary text-primary px-6 py-3 font-semibold hover:bg-primary hover:text-white transition-colors text-sm"
                 >
-                  +7 (4822) 75-13-29
+                  +7 (981) 202-12-61
                 </a>
 
                 <div className="mt-6 pt-6 border-t border-border">

@@ -28,7 +28,7 @@ export default function VillageContact({ prefillMessage, lotId, source = "villag
             {/* Channels */}
             <div className="space-y-4">
               <a
-                href={`tel:${contacts.phone2Raw}`}
+                href={`tel:${contacts.phone1Raw}`}
                 className="flex items-center gap-4 group"
               >
                 <span className="w-10 h-10 bg-white/10 flex items-center justify-center border border-white/20 group-hover:border-accent transition-colors shrink-0">
@@ -38,7 +38,7 @@ export default function VillageContact({ prefillMessage, lotId, source = "villag
                 </span>
                 <div>
                   <div className="text-white font-semibold group-hover:text-accent transition-colors">
-                    {contacts.phone2}
+                    {contacts.phone1}
                   </div>
                   <div className="text-white/50 text-xs">Телефон / WhatsApp</div>
                 </div>

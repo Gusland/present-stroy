@@ -33,14 +33,9 @@ export default function ContactsPage() {
                   <div className="text-2xl shrink-0 mt-0.5">📞</div>
                   <div>
                     <div className="text-muted text-sm mb-1">Телефоны</div>
-                    <div className="space-y-1">
-                      <a href={`tel:${contacts.phone1Raw}`} className="block text-primary font-semibold hover:text-accent transition-colors text-lg">
-                        {contacts.phone1}
-                      </a>
-                      <a href={`tel:${contacts.phone2Raw}`} className="block text-primary font-semibold hover:text-accent transition-colors text-lg">
-                        {contacts.phone2}
-                      </a>
-                    </div>
+                    <a href={`tel:${contacts.phone1Raw}`} className="block text-primary font-semibold hover:text-accent transition-colors text-lg">
+                      {contacts.phone1}
+                    </a>
                   </div>
                 </div>
 

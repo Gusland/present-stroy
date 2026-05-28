@@ -8,7 +8,7 @@ export function localBusinessSchema() {
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
-    telephone: [SITE.phone, SITE.phone2],
+    telephone: SITE.phone,
     email: SITE.email,
     logo: { "@type": "ImageObject", url: SITE.ogImage, width: 200, height: 60 },
     image: SITE.ogImage,

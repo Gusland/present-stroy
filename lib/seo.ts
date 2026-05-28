@@ -5,10 +5,8 @@ export const SITE = {
   name: "Презент-Строй",
   brand: "Презент-Строй",
   legalName: 'ООО "Презент-Строй"',
-  phone: "+74822751329",
-  phoneDisplay: "+7 (4822) 75-13-29",
-  phone2: "+79301651329",
-  phone2Display: "+7 (930) 165-13-29",
+  phone: "+79812021261",
+  phoneDisplay: "+7 (981) 202-12-61",
   email: "present-stroy@inbox.ru",
   address: {
     street: "ул. Маяковского, д. 33, офис 23",

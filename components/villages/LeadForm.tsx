@@ -95,10 +95,10 @@ export default function LeadForm({
         <p className={`text-sm mt-1 ${dark ? "text-white/70" : "text-muted"}`}>
           Или позвоните прямо сейчас:{" "}
           <a
-            href="tel:+79301651329"
+            href="tel:+79812021261"
             className="text-accent font-medium hover:underline"
           >
-            +7 (930) 165-13-29
+            +7 (981) 202-12-61
           </a>
         </p>
       </div>
