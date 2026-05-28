@@ -97,27 +97,27 @@ export default function Header() {
   return (
     <header
       className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
-        tickerVisible ? "top-9" : "top-0"
+        tickerVisible ? "top-7" : "top-0"
       } ${scrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`relative z-[51] flex items-center justify-between transition-[padding] duration-300 ${scrolled ? "py-1.5" : "py-3"}`}>
+        <div className={`relative z-[51] flex items-center justify-between transition-[padding] duration-300 ${scrolled ? "py-1" : "py-2"}`}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
-            <div className={`bg-primary flex items-center justify-center transition-[padding] duration-300 ${scrolled ? "px-2 py-1" : "px-2.5 py-1.5"}`}>
+            <div className={`bg-primary flex items-center justify-center transition-[padding] duration-300 ${scrolled ? "px-1.5 py-0.5" : "px-2 py-1"}`}>
               <Image
                 src="/images/villages/vb/photos/logo.svg"
                 alt="Презент Строй"
                 width={28}
                 height={43}
-                className={`block transition-all duration-300 ${scrolled ? "w-5 h-auto" : "w-7 h-auto"}`}
+                className={`block transition-all duration-300 ${scrolled ? "w-4 h-auto" : "w-5 h-auto"}`}
               />
             </div>
             <div className="leading-tight">
-              <div className={`font-bold text-primary leading-none transition-all duration-300 ${scrolled ? "text-base" : "text-lg"}`}>
+              <div className={`font-bold text-primary leading-none transition-all duration-300 ${scrolled ? "text-sm" : "text-base"}`}>
                 Презент-Строй
               </div>
-              <div className={`text-muted leading-none mt-0.5 transition-all duration-300 ${scrolled ? "text-[10px]" : "text-xs"}`}>
+              <div className={`text-muted leading-none mt-0.5 transition-all duration-300 ${scrolled ? "text-[9px]" : "text-[10px]"}`}>
                 строительная компания
               </div>
             </div>
@@ -221,7 +221,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-0 z-40 bg-white flex flex-col pt-[56px] overflow-y-auto">
+        <div className="lg:hidden fixed inset-0 top-0 z-40 bg-white flex flex-col pt-[50px] overflow-y-auto">
           <nav className="max-w-7xl mx-auto w-full px-4 py-4 flex flex-col gap-1">
             {navItems.map((item) => {
               const active = isActive(item);

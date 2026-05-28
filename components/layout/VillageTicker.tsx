@@ -48,7 +48,7 @@ export default function VillageTicker() {
 
   return (
     <div
-      className="fixed top-0 left-0 right-0 z-[60] h-9 bg-accent flex items-center"
+      className="fixed top-0 left-0 right-0 z-[60] h-7 bg-accent flex items-center"
       role="banner"
       aria-label="Акция Волжский Берег"
     >
