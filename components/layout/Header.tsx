@@ -48,6 +48,7 @@ const navItems = [
   },
   { label: "Проекты", href: "/projects" },
   { label: "Галерея", href: "/gallery" },
+  { label: "Статьи", href: "/articles" },
   { label: "Контакты", href: "/contacts" },
 ];
 

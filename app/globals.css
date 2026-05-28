@@ -32,3 +32,16 @@ body {
 input, textarea {
   outline: none;
 }
+
+/* Article body typography */
+.article-body .prose-article p { @apply text-base text-muted leading-relaxed mb-4; }
+.article-body .prose-article p.lead { @apply text-lg text-primary leading-relaxed mb-6 font-medium; }
+.article-body .prose-article h2 { @apply text-2xl font-bold text-primary mt-10 mb-4; }
+.article-body .prose-article h3 { @apply text-lg font-semibold text-primary mt-6 mb-3; }
+.article-body .prose-article ul { @apply list-disc pl-5 mb-4 space-y-1 text-muted; }
+.article-body .prose-article ol { @apply list-decimal pl-5 mb-4 space-y-1 text-muted; }
+.article-body .prose-article li { @apply text-base leading-relaxed; }
+.article-body .prose-article strong { @apply font-semibold text-primary; }
+.article-body .prose-article table { @apply w-full border-collapse mb-6 text-sm; }
+.article-body .prose-article th { @apply bg-warm text-primary font-semibold px-4 py-2 text-left border border-border; }
+.article-body .prose-article td { @apply px-4 py-2 border border-border text-muted; }
