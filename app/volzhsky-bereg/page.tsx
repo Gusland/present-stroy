@@ -11,7 +11,7 @@ import VillageLocation from "@/components/villages/VillageLocation";
 import VillageFAQ from "@/components/villages/VillageFAQ";
 import VillageContact from "@/components/villages/VillageContact";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 const { available } = getLotCounters();
 
 export const metadata: Metadata = {

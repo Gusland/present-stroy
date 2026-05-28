@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/sections/ServicePageTemplate";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
 export const metadata: Metadata = {
   title: "Строительство фундамента в Твери",
   description: "Строительство фундамента в Твери от 5 500 ₽/м³: монолитная плита, ленточный фундамент. Расчёт под тип грунта и нагрузку.",
+  alternates: {
+    canonical: "/services/stroitelstvo-fundamenta",
+  },
 };
 
 export default function FundamentPage() {
   return (
     <ServicePageTemplate
-      title="Строительство фундамента"
+      title="Строительство фундамента в Твери"
       subtitle="Надёжное основание — залог долговечности всего дома"
       banner={`${BASE}/netcat_files/generated/2105/3466/740x370/57/27354e2a44fbb7f7761c72f9d4dbe784.webp`}
       promo="При заказе строительства фундамента дарим подарочный сертификат со скидкой 10% на ремонт и отделочные работы под ключ"

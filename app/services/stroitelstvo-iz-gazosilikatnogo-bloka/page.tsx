@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/sections/ServicePageTemplate";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
 export const metadata: Metadata = {
   title: "Строительство домов из газосиликата в Твери",
   description: "Строительство домов и коттеджей из газосиликатного блока в Твери. Современные тёплые дома, проверенные поставщики, гарантия качества.",
+  alternates: {
+    canonical: "/services/stroitelstvo-iz-gazosilikatnogo-bloka",
+  },
 };
 
 export default function GazosilikatPage() {
   return (
     <ServicePageTemplate
-      title="Строительство домов и коттеджей из газосиликатного блока"
+      title="Строительство домов и коттеджей из газосиликатного блока в Твери"
       subtitle="Современные тёплые дома из газосиликата и кирпича"
       banner={`${BASE}/netcat_files/generated/2105/3466/740x370/36/27354e2a44fbb7f7761c72f9d4dbe784.webp`}
       promo="При заказе строительства дома дарим подарочный сертификат со скидкой 10% на ремонт и отделку"

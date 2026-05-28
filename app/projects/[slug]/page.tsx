@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Проект «${project.name}» — ${project.specs.общая} м²`,
     description: `Проект дома «${project.name}» площадью ${project.specs.общая} м², ${project.specs.этажность} этаж. Строительство в Твери.`,
+    alternates: { canonical: `/projects/${slug}` },
   };
 }
 
@@ -26,6 +27,16 @@ export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: "https://xn----itbahmwicjfkkc.xn--p1ai" },
+      { "@type": "ListItem", position: 2, name: "Проекты", item: "https://xn----itbahmwicjfkkc.xn--p1ai/projects" },
+      { "@type": "ListItem", position: 3, name: `Дом «${project.name}»`, item: `https://xn----itbahmwicjfkkc.xn--p1ai/projects/${slug}` },
+    ],
+  };
 
   const specRows = [
     project.specs.жилая && { label: "Жилая площадь", value: `${project.specs.жилая} м²` },
@@ -38,6 +49,10 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* Hero */}
       <section className="bg-primary py-24 pt-36">
         <Container>

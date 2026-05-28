@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/sections/ServicePageTemplate";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
 export const metadata: Metadata = {
   title: "Фасадные работы в Твери",
   description: "Фасадные работы в Твери: утепление, штукатурка, облицовка, остекление, вентилируемые фасады. Защита и эстетика вашего здания.",
+  alternates: {
+    canonical: "/services/fasadnye-raboty",
+  },
 };
 
 export default function FasadPage() {
   return (
     <ServicePageTemplate
-      title="Фасадные работы"
+      title="Фасадные работы в Твери"
       subtitle="Презентабельный облик и надёжная защита вашего здания"
       banner={`${BASE}/netcat_files/generated/2105/3466/740x370/56/27354e2a44fbb7f7761c72f9d4dbe784.webp`}
       promo="При заказе фасадных работ дарим подарочный сертификат со скидкой 10% на ремонт"

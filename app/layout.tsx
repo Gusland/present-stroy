@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://present-stroy.ru"),
+  metadataBase: new URL("https://xn----itbahmwicjfkkc.xn--p1ai"),
   title: {
     default: "Презент-Строй — строительство домов в Твери",
     template: "%s | Презент-Строй",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Презент-Строй — строительство домов в Твери",
     description:
       "Строительство домов под ключ в Твери. Более 10 лет опыта, 200+ сданных объектов.",
-    url: "https://present-stroy.ru",
+    url: "https://xn----itbahmwicjfkkc.xn--p1ai",
     images: [
       {
         url: "/og-image.jpg",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://present-stroy.ru",
+    canonical: "https://xn----itbahmwicjfkkc.xn--p1ai",
   },
 };
 
@@ -72,17 +72,17 @@ const organizationSchema = {
   "@graph": [
     {
       "@type": ["Organization", "LocalBusiness", "HomeAndConstructionBusiness"],
-      "@id": "https://present-stroy.ru/#organization",
+      "@id": "https://xn----itbahmwicjfkkc.xn--p1ai/#organization",
       name: "Презент-Строй",
       legalName: 'ООО "Презент-Строй"',
-      url: "https://present-stroy.ru",
+      url: "https://xn----itbahmwicjfkkc.xn--p1ai",
       logo: {
         "@type": "ImageObject",
-        url: "https://present-stroy.ru/og-image.jpg",
+        url: "https://xn----itbahmwicjfkkc.xn--p1ai/og-image.jpg",
         width: 200,
         height: 60,
       },
-      image: "https://present-stroy.ru/og-image.jpg",
+      image: "https://xn----itbahmwicjfkkc.xn--p1ai/og-image.jpg",
       description:
         "Строительная компания в Твери. Строительство домов и коттеджей под ключ, ремонт квартир и офисов, загородные посёлки. Работаем с 2013 года.",
       foundingDate: "2013",

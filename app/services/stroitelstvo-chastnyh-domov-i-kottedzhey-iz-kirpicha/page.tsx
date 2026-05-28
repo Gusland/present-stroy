@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/sections/ServicePageTemplate";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
 export const metadata: Metadata = {
   title: "Строительство домов из кирпича в Твери",
   description: "Строительство частных домов и коттеджей из кирпича в Твери. Полный цикл работ под ключ. Все виды малоэтажного строительства.",
+  alternates: {
+    canonical: "/services/stroitelstvo-chastnyh-domov-i-kottedzhey-iz-kirpicha",
+  },
 };
 
 export default function KirpichPage() {
   return (
     <ServicePageTemplate
-      title="Строительство частных домов и коттеджей из кирпича"
+      title="Строительство частных домов и коттеджей из кирпича в Твери"
       subtitle="Полный цикл малоэтажного строительства под ключ в Твери"
       banner={`${BASE}/netcat_files/generated/2105/3466/740x370/36/27354e2a44fbb7f7761c72f9d4dbe784.webp`}
       promo="При заказе строительства дома дарим подарочный сертификат со скидкой 10% на ремонт и отделку"

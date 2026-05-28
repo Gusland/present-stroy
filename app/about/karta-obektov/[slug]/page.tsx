@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Объект «${obj.name}» — ${obj.address}`,
     description: `Реализованный проект дома «${obj.name}» по адресу ${obj.address}. Строительная компания Презент-Строй.`,
+    alternates: { canonical: `/about/karta-obektov/${slug}` },
   };
 }
 
@@ -34,8 +35,22 @@ export default async function ObjectPage({ params }: Props) {
     obj.specs?.высота && { label: "Высота конька", value: `${obj.specs.высота} м` },
   ].filter(Boolean) as { label: string; value: string }[];
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: "https://xn----itbahmwicjfkkc.xn--p1ai" },
+      { "@type": "ListItem", position: 2, name: "Карта объектов", item: "https://xn----itbahmwicjfkkc.xn--p1ai/about/karta-obektov" },
+      { "@type": "ListItem", position: 3, name: obj.name, item: `https://xn----itbahmwicjfkkc.xn--p1ai/about/karta-obektov/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <section className="bg-primary py-24 pt-36">
         <Container>
           <div className="text-sm text-white/60 mb-2">

@@ -4,7 +4,7 @@ import { buildObjects } from "@/data/objects";
 import { news } from "@/data/news";
 import { village } from "@/data/villages";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

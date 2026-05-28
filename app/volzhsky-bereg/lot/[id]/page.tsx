@@ -8,7 +8,7 @@ import VillageIncluded from "@/components/villages/VillageIncluded";
 import VillageMortgage from "@/components/villages/VillageMortgage";
 import VillageContact from "@/components/villages/VillageContact";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
 export async function generateStaticParams() {
   return village.lots.map((lot) => ({ id: lot.id }));

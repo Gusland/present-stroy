@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/sections/ServicePageTemplate";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
 export const metadata: Metadata = {
   title: "Сантехнические работы в Твери",
   description: "Монтаж отопления, водоснабжения, канализации, тёплых полов и автономных систем в Твери. Опытные мастера, гарантия качества.",
+  alternates: {
+    canonical: "/services/santehnicheskie-raboty",
+  },
 };
 
 export default function SantehnikaPage() {
   return (
     <ServicePageTemplate
-      title="Сантехнические работы"
+      title="Сантехнические работы в Твери"
       subtitle="Проектирование и монтаж инженерных систем любой сложности"
       banner={`${BASE}/netcat_files/generated/2105/3466/740x370/54/27354e2a44fbb7f7761c72f9d4dbe784.webp`}
       promo="При заказе сантехнических работ дарим подарочный сертификат со скидкой 10% на ремонт под ключ"

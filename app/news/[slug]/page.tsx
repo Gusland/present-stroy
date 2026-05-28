@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: item.title,
     description: item.excerpt,
+    alternates: { canonical: `/news/${slug}` },
   };
 }
 
@@ -27,8 +28,22 @@ export default async function NewsArticlePage({ params }: Props) {
   const item = news.find((n) => n.id === slug);
   if (!item) notFound();
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Главная", item: "https://xn----itbahmwicjfkkc.xn--p1ai" },
+      { "@type": "ListItem", position: 2, name: "Новости и акции", item: "https://xn----itbahmwicjfkkc.xn--p1ai/news" },
+      { "@type": "ListItem", position: 3, name: item.title, item: `https://xn----itbahmwicjfkkc.xn--p1ai/news/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <section className="bg-primary py-24 pt-36">
         <Container>
           <div className="text-sm text-white/60 mb-2">

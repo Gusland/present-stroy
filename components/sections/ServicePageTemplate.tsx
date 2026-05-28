@@ -40,8 +40,36 @@ export default function ServicePageTemplate({
 }: ServicePageTemplateProps) {
   const galleryPhotos = photos && photos.length > 0 ? photos : null;
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: title,
+    description: subtitle,
+    provider: {
+      "@type": "LocalBusiness",
+      name: "Презент-Строй",
+      "@id": "https://xn----itbahmwicjfkkc.xn--p1ai/#organization",
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: "Тверская область",
+    },
+    ...(prices && prices.length > 0 && {
+      offers: prices.map((p) => ({
+        "@type": "Offer",
+        name: p.title,
+        price: p.price,
+        priceCurrency: "RUB",
+      })),
+    }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       {/* Hero */}
       <section className="relative bg-primary py-24 pt-36 overflow-hidden">
         {banner && (

@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/sections/ServicePageTemplate";
 
-const BASE = "https://present-stroy.ru";
+const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
 export const metadata: Metadata = {
   title: "Кровельные работы в Твери",
   description: "Монтаж и ремонт кровли любой сложности в Твери от 2 800 ₽/м². Все виды кровельных материалов, гидроизоляция, водосток.",
+  alternates: {
+    canonical: "/services/krovelnye-raboty",
+  },
 };
 
 export default function KrovlyaPage() {
   return (
     <ServicePageTemplate
-      title="Кровельные работы"
+      title="Кровельные работы в Твери"
       subtitle="Монтаж и ремонт кровли любой сложности и любого типа"
       banner={`${BASE}/netcat_files/generated/2105/3466/740x370/55/27354e2a44fbb7f7761c72f9d4dbe784.webp`}
       promo="При заказе кровельных работ дарим подарочный сертификат со скидкой 10% на ремонт и отделочные работы под ключ"
