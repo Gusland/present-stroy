@@ -115,6 +115,8 @@ export default function Footer() {
                   {contacts.email}
                 </a>
               </li>
+              <li>{contacts.address}</li>
+              <li>{contacts.hours}</li>
             </ul>
           </div>
         </div>
