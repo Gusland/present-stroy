@@ -100,7 +100,7 @@ const organizationSchema = {
         longitude: 35.9176,
       },
       telephone: ["+7-4822-75-13-29", "+7-930-165-13-29"],
-      email: "present-stroy@mail.ru",
+      email: "present-stroy@inbox.ru",
       openingHoursSpecification: [
         {
           "@type": "OpeningHoursSpecification",

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "О компании",
   description:
     "Презент-Строй — строительная компания в Твери с 2013 года. Более 200 сданных объектов, гарантия до 5 лет.",
+  alternates: { canonical: "/about" },
 };
 
 const mortgagePrograms = [
@@ -234,14 +235,6 @@ export default function AboutPage() {
             <div className="text-center text-muted">
               <div className="text-5xl mb-4">🗺️</div>
               <p className="font-medium text-primary mb-2">Интерактивная карта объектов</p>
-              <a
-                href={contacts.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-2 text-accent hover:underline text-sm font-medium"
-              >
-                Открыть в Яндекс.Картах →
-              </a>
             </div>
           </div>
         </Container>

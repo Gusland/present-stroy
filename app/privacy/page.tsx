@@ -38,7 +38,7 @@ export default function PrivacyPage() {
             </p>
             <h2 className="text-primary font-bold text-xl mt-8 mb-4">Контакты</h2>
             <p>
-              По вопросам обработки данных: <a href="mailto:present-stroy@mail.ru" className="text-accent">present-stroy@mail.ru</a>
+              По вопросам обработки данных: <a href="mailto:present-stroy@inbox.ru" className="text-accent">present-stroy@inbox.ru</a>
             </p>
           </div>
         </Container>

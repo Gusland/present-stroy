@@ -80,15 +80,6 @@ export default function VillageContact({ prefillMessage, lotId, source = "villag
               </a>
             </div>
 
-            <div className="mt-8 bg-white/10 border border-white/15 p-4">
-              <p className="text-white/80 text-sm leading-relaxed">
-                <strong className="text-white">Адрес офиса:</strong>{" "}
-                {contacts.address}
-              </p>
-              <p className="text-white/60 text-xs mt-1">
-                Пн–Пт 9:00–18:00
-              </p>
-            </div>
           </div>
 
           {/* Form */}
