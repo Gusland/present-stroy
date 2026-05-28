@@ -88,6 +88,12 @@ export default function Header() {
     return () => window.removeEventListener("vb-ticker-closed", onClose);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
   return (
     <header
       className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
@@ -215,8 +221,8 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-border shadow-lg">
-          <nav className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+        <div className="lg:hidden fixed inset-0 top-0 z-40 bg-white flex flex-col pt-[56px] overflow-y-auto">
+          <nav className="max-w-7xl mx-auto w-full px-4 py-4 flex flex-col gap-1">
             {navItems.map((item) => {
               const active = isActive(item);
               return (
