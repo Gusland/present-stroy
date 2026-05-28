@@ -95,13 +95,14 @@ export default function Header() {
   }, [mobileOpen]);
 
   return (
+    <>
     <header
       className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
         tickerVisible ? "top-7" : "top-0"
       } ${scrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`relative z-[51] flex items-center justify-between transition-[padding] duration-300 ${scrolled ? "py-1" : "py-2"}`}>
+        <div className={`flex items-center justify-between transition-[padding] duration-300 ${scrolled ? "py-1" : "py-2"}`}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
             <div className={`bg-primary flex items-center justify-center transition-[padding] duration-300 ${scrolled ? "px-1.5 py-0.5" : "px-2 py-1"}`}>
@@ -219,67 +220,72 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 top-0 z-40 bg-white flex flex-col pt-[50px] overflow-y-auto">
-          <nav className="max-w-7xl mx-auto w-full px-4 py-4 flex flex-col gap-1">
-            {navItems.map((item) => {
-              const active = isActive(item);
-              return (
-                <div key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={
-                      item.highlight || active
-                        ? "block py-2 font-semibold text-accent flex items-center gap-2"
-                        : "block py-2 font-medium text-primary hover:text-accent transition-colors"
-                    }
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {(item.highlight || active) && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 inline-block" />
-                    )}
-                    {item.label}
-                  </Link>
-                  {item.dropdown && (
-                    <div className="pl-4 flex flex-col gap-1 border-l-2 border-border ml-2 mb-1">
-                      {item.dropdown.slice(1).map((sub) => (
-                        <Link
-                          key={sub.href}
-                          href={sub.href}
-                          className={`block py-1 text-sm transition-colors ${
-                            pathname === sub.href || pathname.startsWith(sub.href + "/")
-                              ? "text-accent font-semibold"
-                              : "text-muted hover:text-accent"
-                          }`}
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-            <div className="pt-3 border-t border-border mt-2">
-              <a
-                href={`tel:${contacts.phone1Raw}`}
-                className="block text-primary font-semibold mb-3"
-              >
-                {contacts.phone1}
-              </a>
-              <Link
-                href="/contacts"
-                className="inline-block bg-accent text-white px-6 py-2 font-semibold text-sm hover:bg-accent-dark transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                Связаться
-              </Link>
-            </div>
-          </nav>
-        </div>
-      )}
     </header>
+
+    {/* Mobile Menu — outside <header> to avoid backdrop-filter containing fixed children */}
+    {mobileOpen && (
+      <div
+        className="lg:hidden fixed inset-0 z-40 bg-white overflow-y-auto"
+        style={{ paddingTop: tickerVisible ? "78px" : "50px" }}
+      >
+        <nav className="max-w-7xl mx-auto w-full px-4 py-4 flex flex-col gap-1">
+          {navItems.map((item) => {
+            const active = isActive(item);
+            return (
+              <div key={item.href}>
+                <Link
+                  href={item.href}
+                  className={
+                    item.highlight || active
+                      ? "block py-2 font-semibold text-accent flex items-center gap-2"
+                      : "block py-2 font-medium text-primary hover:text-accent transition-colors"
+                  }
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {(item.highlight || active) && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0 inline-block" />
+                  )}
+                  {item.label}
+                </Link>
+                {item.dropdown && (
+                  <div className="pl-4 flex flex-col gap-1 border-l-2 border-border ml-2 mb-1">
+                    {item.dropdown.slice(1).map((sub) => (
+                      <Link
+                        key={sub.href}
+                        href={sub.href}
+                        className={`block py-1 text-sm transition-colors ${
+                          pathname === sub.href || pathname.startsWith(sub.href + "/")
+                            ? "text-accent font-semibold"
+                            : "text-muted hover:text-accent"
+                        }`}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {sub.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+          <div className="pt-3 border-t border-border mt-2">
+            <a
+              href={`tel:${contacts.phone1Raw}`}
+              className="block text-primary font-semibold mb-3"
+            >
+              {contacts.phone1}
+            </a>
+            <Link
+              href="/contacts"
+              className="inline-block bg-accent text-white px-6 py-2 font-semibold text-sm hover:bg-accent-dark transition-colors"
+              onClick={() => setMobileOpen(false)}
+            >
+              Связаться
+            </Link>
+          </div>
+        </nav>
+      </div>
+    )}
+    </>
   );
 }
