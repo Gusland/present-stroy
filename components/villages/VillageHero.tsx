@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
-import { village } from "@/data/villages";
-import { getLotCounters } from "@/data/villages";
+import { village, getLotCounters } from "@/data/villages";
 
 export default function VillageHero() {
   const { total, sold, available } = getLotCounters();
@@ -11,7 +10,7 @@ export default function VillageHero() {
     <section className="relative min-h-[90vh] flex items-end bg-primary overflow-hidden">
       <Image
         src={village.heroPhoto}
-        alt="Пирс на Волге — посёлок Волжский Берег"
+        alt="Аэропанорама посёлка Волжский Берег на берегу Волги"
         fill
         priority
         className="object-cover"
@@ -21,6 +20,18 @@ export default function VillageHero() {
 
       <Container className="relative z-10 pb-16 pt-32">
         <div className="max-w-3xl">
+          {/* Logo */}
+          <div className="mb-4">
+            <Image
+              src="/images/villages/vb/photos/logo.svg"
+              alt="Презент Строй"
+              width={38}
+              height={59}
+              className="opacity-90"
+              loading="eager"
+            />
+          </div>
+
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent text-sm font-medium px-4 py-1.5 mb-6">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />

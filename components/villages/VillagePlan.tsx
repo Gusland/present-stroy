@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import Container from "@/components/ui/Container";
-import { village, getLotCounters, type Lot } from "@/data/villages";
+import { village, getLotCounters, getAvailableLots, type Lot } from "@/data/villages";
 
 // ─── SVG geometry constants ────────────────────────────────────────────────
 const VB = { w: 1200, h: 620 };
@@ -27,11 +26,6 @@ function lotH(line: 1 | 2) {
   return line === 1 ? ROW1.h : ROW2.h;
 }
 
-const BRICK_COLOR: Record<string, string> = {
-  dark: "#4A3728",
-  red: "#C0392B",
-  cognac: "#C19A52",
-};
 
 // ─── Filter types ──────────────────────────────────────────────────────────
 type Filter = "all" | "available" | "sold" | "line1" | "line2";
@@ -40,10 +34,11 @@ type Filter = "all" | "available" | "sold" | "line1" | "line2";
 export default function VillagePlan() {
   const router = useRouter();
   const [filter, setFilter] = useState<Filter>("all");
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(
+    () => getAvailableLots()[0]?.id ?? null
+  );
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [soldModal, setSoldModal] = useState(false);
-  const svgRef = useRef<SVGSVGElement>(null);
 
   const { available } = getLotCounters();
   const lots = village.lots;
@@ -111,20 +106,10 @@ export default function VillagePlan() {
         <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-6">
           {/* SVG Plan */}
           <div className="border border-border overflow-hidden bg-warm">
-            <TransformWrapper
-              minScale={0.5}
-              maxScale={4}
-              wheel={{ step: 0.1 }}
-              panning={{ excluded: ["button"] }}
-            >
-              <TransformComponent
-                wrapperStyle={{ width: "100%", maxHeight: "500px" }}
-                contentStyle={{ width: "100%" }}
-              >
+            <div className="overflow-x-auto">
                 <svg
-                  ref={svgRef}
                   viewBox={`0 0 ${VB.w} ${VB.h}`}
-                  className="w-full"
+                  className="w-full min-w-[720px]"
                   role="img"
                   aria-label="Генеральный план посёлка Волжский Берег"
                 >
@@ -308,28 +293,16 @@ export default function VillagePlan() {
 
                         {/* Price for available */}
                         {isAvailable && (
-                          <>
-                            <text
-                              x={x + LOT.w / 2}
-                              y={y + h / 2 + 8}
-                              textAnchor="middle"
-                              fill={isSelected || isHovered ? "#C19A52" : "#C19A52"}
-                              fontSize={9}
-                              fontWeight="600"
-                            >
-                              14,3 млн
-                            </text>
-                            {lot.brick && (
-                              <rect
-                                x={x + LOT.w / 2 - 8}
-                                y={y + h - 16}
-                                width={16}
-                                height={8}
-                                fill={BRICK_COLOR[lot.brick] ?? "#888"}
-                                rx={1}
-                              />
-                            )}
-                          </>
+                          <text
+                            x={x + LOT.w / 2}
+                            y={y + h / 2 + 8}
+                            textAnchor="middle"
+                            fill="#C19A52"
+                            fontSize={9}
+                            fontWeight="600"
+                          >
+                            14,3 млн
+                          </text>
                         )}
 
                         {/* Sold X */}
@@ -393,8 +366,7 @@ export default function VillagePlan() {
                     );
                   })()}
                 </svg>
-              </TransformComponent>
-            </TransformWrapper>
+            </div>
 
             {/* Legend */}
             <div className="flex items-center gap-5 px-4 py-3 border-t border-border text-xs text-muted">
@@ -406,7 +378,7 @@ export default function VillagePlan() {
                 <span className="w-4 h-4 border border-[#BDB8AF] bg-[#E8E4DB] inline-block" />
                 Продан
               </div>
-              <span className="ml-auto hidden sm:inline">Зажмите и тяните для перемещения · щипок для масштаба</span>
+              <span className="ml-auto hidden sm:inline">Кликните по свободному дому</span>
             </div>
           </div>
 
@@ -438,7 +410,7 @@ export default function VillagePlan() {
                         <span className="font-semibold text-primary group-hover:text-accent text-sm transition-colors">
                           Дом № {l.number}
                         </span>
-                        <span className="text-muted text-xs ml-2">{l.brickRu}</span>
+                        <span className="text-muted text-xs ml-2">{l.distanceToPierM} м до пирса</span>
                       </button>
                     ))}
                 </div>
@@ -540,17 +512,11 @@ function VillagePlotCard({ lot, onClose }: { lot: Lot; onClose: () => void }) {
           ))}
         </dl>
 
-        {/* Brick swatch */}
-        {lot.brick && (
-          <div className="mt-4 flex items-center gap-2">
-            <span className="text-muted text-sm">Кирпич:</span>
-            <span
-              className="w-5 h-5 rounded-sm border border-border"
-              style={{ background: BRICK_COLOR[lot.brick] ?? "#888" }}
-              aria-label={lot.brickRu}
-            />
-            <span className="text-primary text-sm">{lot.brickRu}</span>
-          </div>
+        {/* Description excerpt */}
+        {lot.description && (
+          <p className="mt-4 text-muted text-xs leading-relaxed border-t border-border pt-3">
+            {lot.description.split("\n\n")[0]}
+          </p>
         )}
 
         {/* CTAs */}

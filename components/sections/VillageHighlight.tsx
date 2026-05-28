@@ -14,7 +14,7 @@ export default function VillageHighlight() {
           <div className="relative aspect-[4/3] overflow-hidden border border-border">
             <Image
               src={village.heroPhoto}
-              alt="Пирс на Волге — посёлок Волжский Берег"
+              alt="Аэропанорама посёлка Волжский Берег на берегу Волги"
               fill
               className="object-cover hover:scale-105 transition-transform duration-700"
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -67,7 +67,7 @@ export default function VillageHighlight() {
                     14,3 млн
                   </div>
                   <div className="text-muted text-xs mt-0.5 truncate">
-                    {lot.brickRu?.split(" ")[0]}
+                    {lot.distanceToPierM} м до пирса
                   </div>
                 </Link>
               ))}

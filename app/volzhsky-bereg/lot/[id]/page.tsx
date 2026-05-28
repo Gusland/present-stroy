@@ -24,13 +24,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const isSold = lot.status === "sold";
   const title = isSold
     ? `Дом № ${lot.number} — продан | Волжский Берег`
-    : `Дом № ${lot.number} — ${lot.brickRu ?? "138 м²"} | Волжский Берег`;
+    : `Дом № ${lot.number} — 138 м² у Волги | Волжский Берег`;
 
   return {
     title,
     description: isSold
       ? `Дом № ${lot.number} в посёлке Волжский Берег уже продан. Посмотрите свободные дома.`
-      : `Готовый дом № ${lot.number} в посёлке Волжский Берег. 138 м², 11 соток ИЖС, 14 300 000 ₽. ${lot.brickRu ?? ""}. До пирса ${lot.distanceToPierM ?? 120} м.`,
+      : `Готовый дом № ${lot.number} в посёлке Волжский Берег. 138 м², 11 соток ИЖС, 14 300 000 ₽. До пирса ${lot.distanceToPierM ?? 120} м.`,
     alternates: { canonical: `${BASE}/volzhsky-bereg/lot/${id}` },
     openGraph: {
       title,
@@ -195,9 +195,6 @@ export default async function LotPage({ params }: Props) {
                     <h1 className="text-2xl font-bold text-primary mb-1">
                       Дом № {lot.number}
                     </h1>
-                    {lot.brickRu && (
-                      <p className="text-muted text-sm mb-4">{lot.brickRu}</p>
-                    )}
 
                     <div className="text-3xl font-bold text-primary mb-5">
                       {price} ₽
@@ -362,7 +359,6 @@ export default async function LotPage({ params }: Props) {
                       {new Intl.NumberFormat("ru-RU").format(defaultLot.priceRub)} ₽
                     </span>
                   </div>
-                  <p className="text-muted text-sm">{l.brickRu}</p>
                   {l.distanceToPierM && (
                     <p className="text-muted text-xs mt-1">
                       {l.distanceToPierM} м до пирса
@@ -379,7 +375,7 @@ export default async function LotPage({ params }: Props) {
         lotId={lot.id}
         prefillMessage={
           !isSold
-            ? `Интересует дом № ${lot.number} (${lot.brickRu ?? ""})`
+            ? `Интересует дом № ${lot.number}${lot.distanceToPierM ? `, ${lot.distanceToPierM} м до пирса` : ""}`
             : undefined
         }
       />
