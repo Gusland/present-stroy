@@ -20,18 +20,6 @@ export default function VillageHero() {
 
       <Container className="relative z-10 pb-16 pt-32">
         <div className="max-w-3xl">
-          {/* Logo */}
-          <div className="mb-4">
-            <Image
-              src="/images/villages/vb/photos/logo.svg"
-              alt="Презент Строй"
-              width={38}
-              height={59}
-              className="opacity-90"
-              loading="eager"
-            />
-          </div>
-
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-accent/20 border border-accent/40 text-accent text-sm font-medium px-4 py-1.5 mb-6">
             <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />

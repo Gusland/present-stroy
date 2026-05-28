@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import { contacts } from "@/data/contacts";
@@ -33,8 +34,14 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-accent text-white font-bold text-xl px-3 py-2 leading-none">
-                ПС
+              <div className="bg-accent flex items-center justify-center px-2.5 py-1.5">
+                <Image
+                  src="/images/villages/vb/photos/logo.svg"
+                  alt="Презент Строй"
+                  width={28}
+                  height={43}
+                  className="block"
+                />
               </div>
               <div>
                 <div className="font-bold text-lg leading-none">Презент-Строй</div>

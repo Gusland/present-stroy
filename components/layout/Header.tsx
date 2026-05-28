@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { contacts } from "@/data/contacts";
@@ -82,8 +83,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-18 py-3">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
-            <div className="bg-primary text-white font-bold text-xl px-3 py-2 leading-none">
-              ПС
+            <div className="bg-primary flex items-center justify-center px-2.5 py-1.5">
+              <Image
+                src="/images/villages/vb/photos/logo.svg"
+                alt="Презент Строй"
+                width={28}
+                height={43}
+                className="block"
+              />
             </div>
             <div className="leading-tight">
               <div className="font-bold text-primary text-lg leading-none">
