@@ -6,9 +6,10 @@ import ContactFormSection from "@/components/sections/ContactFormSection";
 import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
-  title: "Проекты домов",
+  title: "Проекты домов в Твери — 12 готовых решений | Презент-Строй",
   description:
-    "Каталог проектов домов в Твери: типовые и индивидуальные проекты от 63 до 325 м². Планировки, фото, характеристики.",
+    "12 проектов одно- и двухэтажных домов из газоблока и кирпича в Твери. Площади 63–325 м², цена от 6,5 млн ₽ под ключ. Адаптируем под ваш участок в Тверской области.",
+  alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {

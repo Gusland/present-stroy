@@ -7,6 +7,8 @@ import Container from "@/components/ui/Container";
 import VillageIncluded from "@/components/villages/VillageIncluded";
 import VillageMortgage from "@/components/villages/VillageMortgage";
 import VillageContact from "@/components/villages/VillageContact";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { realEstateSchema, breadcrumbSchema } from "@/lib/schema";
 
 const BASE = "https://xn----itbahmwicjfkkc.xn--p1ai";
 
@@ -54,44 +56,26 @@ export default async function LotPage({ params }: Props) {
     (l) => l.status === "available" && l.id !== lot.id
   );
 
-  const breadcrumbLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Главная", item: `${BASE}` },
-      { "@type": "ListItem", position: 2, name: "Волжский Берег", item: `${BASE}/volzhsky-bereg` },
-      { "@type": "ListItem", position: 3, name: `Дом № ${lot.number}`, item: `${BASE}/volzhsky-bereg/lot/${id}` },
-    ],
-  };
+  const residenceLd = realEstateSchema({
+    id: lot.id,
+    number: lot.number,
+    description: lot.description,
+    photos: lot.photos,
+    priceRub: defaultLot.priceRub,
+    status: lot.status,
+    bedrooms: defaultLot.bedrooms,
+  });
 
-  const productLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: `Дом № ${lot.number} — ${village.name}`,
-    description: lot.description ?? `Готовый дом ${defaultLot.houseAreaM2} м², ${defaultLot.plotAreaSot} соток.`,
-    image: lot.photos[0] ? `${BASE}${lot.photos[0]}` : undefined,
-    brand: { "@type": "Organization", name: "Презент-Строй" },
-    offers: {
-      "@type": "Offer",
-      price: defaultLot.priceRub,
-      priceCurrency: "RUB",
-      availability: isSold
-        ? "https://schema.org/SoldOut"
-        : "https://schema.org/InStock",
-      url: `${BASE}/volzhsky-bereg/lot/${id}`,
-    },
-  };
+  const crumbsLd = breadcrumbSchema([
+    { name: "Главная", path: "/" },
+    { name: "Волжский Берег", path: "/volzhsky-bereg" },
+    { name: `Дом № ${lot.number}`, path: `/volzhsky-bereg/lot/${id}` },
+  ]);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
-      />
+      <JsonLd data={crumbsLd} />
+      <JsonLd data={residenceLd} />
 
       {/* Breadcrumbs */}
       <div className="bg-warm border-b border-border pt-24 pb-3">

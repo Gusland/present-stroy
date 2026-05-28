@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import Container from "@/components/ui/Container";
 import ContactFormSection from "@/components/sections/ContactFormSection";
 import { projects } from "@/data/projects";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { productSchema, breadcrumbSchema } from "@/lib/schema";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -17,8 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
   return {
-    title: `Проект «${project.name}» — ${project.specs.общая} м²`,
-    description: `Проект дома «${project.name}» площадью ${project.specs.общая} м², ${project.specs.этажность} этаж. Строительство в Твери.`,
+    title: `${project.name} — проект дома ${project.specs.общая} м² в Твери | Презент-Строй`,
+    description: `Проект дома «${project.name}»: ${project.specs.общая} м², ${project.specs.этажность} эт. Строительство под ключ в Твери и Тверской области. Фиксированная цена в договоре, срок 6–9 месяцев.`,
     alternates: { canonical: `/projects/${slug}` },
   };
 }
@@ -28,15 +30,19 @@ export default async function ProjectPage({ params }: Props) {
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Главная", item: "https://xn----itbahmwicjfkkc.xn--p1ai" },
-      { "@type": "ListItem", position: 2, name: "Проекты", item: "https://xn----itbahmwicjfkkc.xn--p1ai/projects" },
-      { "@type": "ListItem", position: 3, name: `Дом «${project.name}»`, item: `https://xn----itbahmwicjfkkc.xn--p1ai/projects/${slug}` },
-    ],
-  };
+  const crumbsLd = breadcrumbSchema([
+    { name: "Главная", path: "/" },
+    { name: "Проекты", path: "/projects" },
+    { name: `Дом «${project.name}»`, path: `/projects/${slug}` },
+  ]);
+
+  const productLd = productSchema({
+    name: `Проект дома «${project.name}»`,
+    description: `Проект дома ${project.specs.общая} м², ${project.specs.этажность} эт. Строительство в Твери.`,
+    images: project.images ?? [],
+    priceFrom: 0,
+    url: `/projects/${slug}`,
+  });
 
   const specRows = [
     project.specs.жилая && { label: "Жилая площадь", value: `${project.specs.жилая} м²` },
@@ -49,10 +55,8 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <JsonLd data={crumbsLd} />
+      <JsonLd data={productLd} />
       {/* Hero */}
       <section className="bg-primary py-24 pt-36">
         <Container>

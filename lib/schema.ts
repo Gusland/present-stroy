@@ -91,7 +91,7 @@ export function productSchema(p: {
 
 export function realEstateSchema(lot: {
   id: string;
-  number: string;
+  number: number | string;
   description?: string;
   photos: string[];
   priceRub: number;
