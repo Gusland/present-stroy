@@ -101,7 +101,7 @@ export default function Header() {
       } ${scrolled ? "bg-white shadow-md" : "bg-white/95 backdrop-blur-sm"}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex items-center justify-between transition-[padding] duration-300 ${scrolled ? "py-1.5" : "py-3"}`}>
+        <div className={`relative z-[51] flex items-center justify-between transition-[padding] duration-300 ${scrolled ? "py-1.5" : "py-3"}`}>
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
             <div className={`bg-primary flex items-center justify-center transition-[padding] duration-300 ${scrolled ? "px-2 py-1" : "px-2.5 py-1.5"}`}>
@@ -144,7 +144,7 @@ export default function Header() {
                               : "bg-accent text-white hover:bg-accent-dark"
                           }`
                         : active
-                        ? "px-3 pb-1.5 pt-2 text-sm font-semibold text-accent flex items-center gap-1 border-b-2 border-accent"
+                        ? "px-3 py-2 text-sm font-semibold text-accent flex items-center gap-1"
                         : "px-3 py-2 text-sm font-medium text-primary hover:text-accent transition-colors flex items-center gap-1"
                     }
                   >
